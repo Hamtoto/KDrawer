@@ -190,8 +190,8 @@ public class DrawerView extends JPanel
 		= { "Point", "Box", "Line", "Lines", "Curve", "Arrow", "Circle", 
 			"Triangle", "Diamond", "Star", "Scribble", "Text", "Image", "Eraser" };
 	public static String[] koreanFigureType 
-		= { "Á¡", "»ç°¢Çü", "¼±ºĞ", "¿©·¯ ¼±", "°î¼±", "È­»ìÇ¥", "¿ø", 
-			"»ï°¢Çü", "¸¶¸§¸ğ", "º°", "³«¼­", "ÅØ½ºÆ®", "±×¸²", "Áö¿ì°³" };
+		= { "ì ", "ì‚¬ê°í˜•", "ì„ ë¶„", "ì—¬ëŸ¬ ì„ ", "ê³¡ì„ ", "í™”ì‚´í‘œ", "ì›", 
+			"ì‚¼ê°í˜•", "ë§ˆë¦„ëª¨", "ë³„", "ë‚™ì„œ", "í…ìŠ¤íŠ¸", "ê·¸ë¦¼", "ì§€ìš°ê°œ" };
 	public static ArrayList<String> figureTypeNames 
 									= new ArrayList<String>();
 	public static HashMap figureTypes = new HashMap<String,String>();
