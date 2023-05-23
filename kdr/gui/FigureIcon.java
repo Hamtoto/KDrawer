@@ -20,7 +20,7 @@ class FigureIcon implements Icon
 
 	public void paintIcon(Component c,Graphics g,int x,int y) {
 		g.setColor(Color.black);
-		
+
 		if (figureType.equals(DrawerView.figureType[0])) // Point
 		{
 			g.drawOval(x+WIDTH/2-1,y+HEIGHT/2-1,2,2);
@@ -74,8 +74,8 @@ class FigureIcon implements Icon
 			g.drawLine(x,y+HEIGHT-1,x+WIDTH,y+HEIGHT-1);
 		} else if (figureType.equals(DrawerView.figureType[8])) // Diamond
 		{
-			g.drawPolygon(new int[] {x + (WIDTH / 2), x + WIDTH, x + (WIDTH / 2), x}, 
-				new int[] {y, y + (HEIGHT / 2), y + HEIGHT,  y + (HEIGHT / 2)}, 4);	
+			g.drawPolygon(new int[] {x + (WIDTH / 2), x + WIDTH, x + (WIDTH / 2), x},
+					new int[] {y, y + (HEIGHT / 2), y + HEIGHT,  y + (HEIGHT / 2)}, 4);
 		} else if (figureType.equals(DrawerView.figureType[9])) // Star
 		{
 			int xpoints[] = new int[10];
@@ -85,10 +85,11 @@ class FigureIcon implements Icon
 			g.drawPolygon(xpoints, ypoints, 10);
 		} else if (figureType.equals(DrawerView.figureType[10])) // Scribble
 		{
-			Font oldFont = g.getFont();
-			g.setFont(new Font("Times New Roman",Font.PLAIN,20));
-			g.drawString("P",x+1,y+15);
-			g.setFont(oldFont);
+			g.drawPolygon(new int[] {x + 1, x + 3, x + 14, x + 12, x + 1},
+					new int[] {y + 14, y + 14, y + 3, y + 1, y + 12}, 5);
+			g.fillPolygon(new int[] {x+13,x+14,x+12,x+11},
+					new int[] {y+6,y+3,y+1,y+4},4);
+
 		} else if (figureType.equals(DrawerView.figureType[11])) // Text
 		{
 			Font oldFont = g.getFont();
@@ -98,15 +99,17 @@ class FigureIcon implements Icon
 		} else if (figureType.equals(DrawerView.figureType[12])) // KImage
 		{
 			g.fillOval(x+WIDTH/3*2-1,y+HEIGHT/5,WIDTH/3,HEIGHT/3);
-			g.drawPolygon(new int[] {x, x + WIDTH, x + WIDTH, x}, new int[] {y, y, y + HEIGHT, y + HEIGHT}, 4);
-			g.fillPolygon(new int[] {x, x + 5, x + 8, x + WIDTH / 3 * 2 , x + WIDTH}, 
-				new int[] {y + HEIGHT, y + HEIGHT / 7 * 4, y + HEIGHT / 7 * 6, y + HEIGHT / 3 * 2, y + HEIGHT}, 5);	
+			g.drawPolygon(new int[] {x, x + WIDTH, x + WIDTH, x},
+					new int[] {y, y, y + HEIGHT, y + HEIGHT}, 4);
+			g.fillPolygon(new int[] {x, x + 5, x + 8, x + WIDTH / 3 * 2 , x + WIDTH},
+					new int[] {y + HEIGHT, y + HEIGHT / 7 * 4, y + HEIGHT / 7 * 6, y + HEIGHT / 3 * 2, y + HEIGHT}, 5);
 		} else if (figureType.equals(DrawerView.figureType[13])) // Eraser
 		{
-			Font oldFont = g.getFont();
-			g.setFont(new Font("Times New Roman",Font.PLAIN,20));
-			g.drawString("E",x+1,y+15);
-			g.setFont(oldFont);
+			g.drawPolygon(new int[] {x + 4, x + 6, x + 14, x + 14, x + 10, x + 9, x + 1, x + 1},
+					new int[] {y + 14, y + 14, y + 6, y + 5, y + 1, y + 1, y + 9, y + 11}, 8);
+			g.drawLine(x+4, y+14, x+14, y+14);
+			g.drawLine(x+8, y+12, x+3, y+7);
+
 		} else { // Undefined
 			Font oldFont = g.getFont();
 			g.setFont(new Font("Times New Roman",Font.BOLD,20));
