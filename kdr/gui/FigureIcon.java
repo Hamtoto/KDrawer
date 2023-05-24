@@ -87,8 +87,11 @@ class FigureIcon implements Icon
 		{
 			g.drawPolygon(new int[] {x + 1, x + 3, x + 14, x + 12, x + 1},
 					new int[] {y + 14, y + 14, y + 3, y + 1, y + 12}, 5);
+			g.fillPolygon(new int[] {x+2,x+1,x+1,x+3,x+4},
+					new int[] {y+11,y+12,y+14,y+14,y+13}, 5);
 			g.fillPolygon(new int[] {x+13,x+14,x+12,x+11},
 					new int[] {y+6,y+3,y+1,y+4},4);
+			g.drawLine(x + 1,y + 14,x + 13, y + 14);
 
 		} else if (figureType.equals(DrawerView.figureType[11])) // Text
 		{
