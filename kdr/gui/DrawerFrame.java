@@ -355,7 +355,7 @@ public class DrawerFrame extends JFrame
 		fileMenu.add(newFile);
 		newFile.setMnemonic('N');
 		newFile.setBackground(Color.white);
-		newFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("newFile.png")));
+		//newFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("")));
 		newFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
 		newFile.addActionListener((e) -> canvas.doFileNew());
 
@@ -363,7 +363,7 @@ public class DrawerFrame extends JFrame
 		fileMenu.add(openFile);
 		openFile.setMnemonic('O');
 		openFile.setBackground(Color.white);
-		openFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("openFile.png")));
+		//openFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("")));
 		openFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
 		openFile.addActionListener((e) -> doOpen());
 
@@ -371,7 +371,7 @@ public class DrawerFrame extends JFrame
 		fileMenu.add(saveFile);
 		saveFile.setMnemonic('S');
 		saveFile.setBackground(Color.white);
-		saveFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("saveFile.png")));
+		//saveFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("")));
 		saveFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));	
 		saveFile.addActionListener((e) -> canvas.doSave(fileName));
 
@@ -379,7 +379,7 @@ public class DrawerFrame extends JFrame
 		fileMenu.add(saveAsFile);
 		saveAsFile.setMnemonic('A');
 		saveAsFile.setBackground(Color.white);
-		saveAsFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("saveAsFile.png")));
+		//saveAsFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("")));
 		saveAsFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
 		saveAsFile.addActionListener((e) -> doSaveAs());
 
@@ -389,7 +389,7 @@ public class DrawerFrame extends JFrame
 		fileMenu.add(printFile);
 		printFile.setMnemonic('P');
 		printFile.setBackground(Color.white);
-		printFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("printFile.png")));
+		//printFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("")));
 		printFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
 		printFile.addActionListener((e) -> doPrint());
 
@@ -399,7 +399,7 @@ public class DrawerFrame extends JFrame
 		fileMenu.add(exit);
 		exit.setMnemonic('X');
 		exit.setBackground(Color.white);
-		exit.setIcon(new ImageIcon(DrawerFrame.class.getResource("exit.png")));
+		//exit.setIcon(new ImageIcon(DrawerFrame.class.getResource("")));
 		exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_MASK));
 		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -527,7 +527,11 @@ public class DrawerFrame extends JFrame
 		infoHelp.setMnemonic('I');
 		helpMenu.add(infoHelp);
 		infoHelp.addActionListener((e) ->
-					{ JOptionPane.showMessageDialog(null, "SuldenLion & Hamtoto's Drawer"); } 
+					{ JOptionPane.showMessageDialog(null,
+							"SuldenLion & Hamtoto & BaSak's Drawer\n" +
+									" Project Email : k4kdrawer@gmail.com \n" +
+									"Pusan University of Foreign Studies\n " +
+									"Department of Computer Science \n"); }
 					);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
