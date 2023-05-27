@@ -175,7 +175,7 @@ public class DrawerFrame extends JFrame
 		int screenWidth = d.width;
 		setSize(screenWidth*2/3, screenHeight*2/3);
 		setLocation(screenWidth/6, screenHeight/6);
-		Image img = tk.getImage("Sullcon.png");
+		Image img = tk.getImage("logo.png");
 		setIconImage(img);
 		
 		Container container = this.getContentPane();
