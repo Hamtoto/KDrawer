@@ -21,14 +21,14 @@ public class StatusBar extends JPanel
 		viewSize.setEditable(false);
 		viewSize.setHorizontalAlignment(JTextField.CENTER);
 
-		javax.swing.Box box1 = javax.swing.Box.createHorizontalBox();
-		box1.add(javax.swing.Box.createHorizontalStrut(20));
+		Box box1 = Box.createHorizontalBox();
+		box1.add(Box.createHorizontalStrut(20));
 		box1.add(position);
 		box1.add(figureType);
 
-		javax.swing.Box box2 = javax.swing.Box.createHorizontalBox();
+		Box box2 = Box.createHorizontalBox();
 		box2.add(viewSize);
-		box2.add(javax.swing.Box.createHorizontalStrut(20));
+		box2.add(Box.createHorizontalStrut(20));
 
 		add(box1,"West");
 		add(box2,"East");

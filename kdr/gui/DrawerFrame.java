@@ -14,7 +14,7 @@ public class DrawerFrame extends JFrame
 	static class ZoomBox extends JComboBox implements ActionListener
 	{
 		DrawerView canvas;
-		static String[] size = { "100", "80", "50" };
+		static String[] size = { "100","90","80","70", "60",  "50","40","30","20","10" };
 		ZoomBox(DrawerView canvas) {
 			super(size);
 			this.canvas = canvas;
@@ -284,6 +284,7 @@ public class DrawerFrame extends JFrame
 		selectToolBar.add(canvas.getArrowAction());
 		selectToolBar.add(canvas.getCircleAction());
 		selectToolBar.add(canvas.getTriangleAction());
+		selectToolBar.add(canvas.getRightTriangleAction());
 		selectToolBar.add(canvas.getDiamondAction());
 		selectToolBar.add(canvas.getStarAction());
 		selectToolBar.add(canvas.getScribbleAction());
@@ -298,7 +299,7 @@ public class DrawerFrame extends JFrame
 		colorToolBar.add(new ColorAction("Green",Color.green,canvas));
 		colorToolBar.add(new ColorAction("Blue",Color.blue,canvas));
 		colorToolBar.add(new ColorAction("Color",Color.yellow,canvas));
-		colorToolBar.add(javax.swing.Box.createGlue());
+		colorToolBar.add(Box.createGlue());
 
 		Box toolBarPanel = Box.createHorizontalBox();
 		networkToolBar = new JToolBar();
@@ -347,11 +348,12 @@ public class DrawerFrame extends JFrame
 		JMenuBar menus = new JMenuBar();
 		setJMenuBar(menus);
 
-		JMenu fileMenu = new JMenu("File");
+		JMenu fileMenu = new JMenu(DrawerView.Labels.get("File (F)"));
 		menus.add(fileMenu);
 		fileMenu.setMnemonic('F');
 
-		JMenuItem newFile = new JMenuItem("New File");
+		JMenuItem newFile
+			= new JMenuItem(DrawerView.Labels.get("New File (N)"));
 		fileMenu.add(newFile);
 		newFile.setMnemonic('N');
 		newFile.setBackground(Color.white);
@@ -359,7 +361,8 @@ public class DrawerFrame extends JFrame
 		newFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
 		newFile.addActionListener((e) -> canvas.doFileNew());
 
-		JMenuItem openFile = new JMenuItem("Open File");
+		JMenuItem openFile 
+			= new JMenuItem(DrawerView.Labels.get("Open File (O)"));
 		fileMenu.add(openFile);
 		openFile.setMnemonic('O');
 		openFile.setBackground(Color.white);
@@ -367,7 +370,8 @@ public class DrawerFrame extends JFrame
 		openFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
 		openFile.addActionListener((e) -> doOpen());
 
-		JMenuItem saveFile = new JMenuItem("Save");
+		JMenuItem saveFile 
+			= new JMenuItem(DrawerView.Labels.get("Save (S)"));
 		fileMenu.add(saveFile);
 		saveFile.setMnemonic('S');
 		saveFile.setBackground(Color.white);
@@ -375,7 +379,8 @@ public class DrawerFrame extends JFrame
 		saveFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));	
 		saveFile.addActionListener((e) -> canvas.doSave(fileName));
 
-		JMenuItem saveAsFile = new JMenuItem("Save As");
+		JMenuItem saveAsFile 
+			= new JMenuItem(DrawerView.Labels.get("Save As (A)"));
 		fileMenu.add(saveAsFile);
 		saveAsFile.setMnemonic('A');
 		saveAsFile.setBackground(Color.white);
@@ -385,7 +390,8 @@ public class DrawerFrame extends JFrame
 
 		fileMenu.addSeparator();
 
-		JMenuItem printFile = new JMenuItem("Print");
+		JMenuItem printFile 
+			= new JMenuItem(DrawerView.Labels.get("Print (P)"));
 		fileMenu.add(printFile);
 		printFile.setMnemonic('P');
 		printFile.setBackground(Color.white);
@@ -395,7 +401,8 @@ public class DrawerFrame extends JFrame
 
 		fileMenu.addSeparator();
 	
-		JMenuItem exit = new JMenuItem("Exit");
+		JMenuItem exit 
+			= new JMenuItem(DrawerView.Labels.get("Exit (X)"));
 		fileMenu.add(exit);
 		exit.setMnemonic('X');
 		exit.setBackground(Color.white);
@@ -407,8 +414,8 @@ public class DrawerFrame extends JFrame
 			}
 		});
 
-		JMenu figureMenu = new JMenu("Figure (F)");
-		figureMenu.setMnemonic('i');
+		JMenu figureMenu = new JMenu(DrawerView.Labels.get("Figure (G)"));
+		figureMenu.setMnemonic('G');
 		menus.add(figureMenu);
 
 		JMenuItem figurePoint = new JMenuItem(canvas.getPointAction());
@@ -435,6 +442,9 @@ public class DrawerFrame extends JFrame
 		JMenuItem figureTriangle = new JMenuItem(canvas.getTriangleAction());
 		figureMenu.add(figureTriangle);
 
+		JMenuItem figureRightTriangle = new JMenuItem(canvas.getRightTriangleAction());
+		figureMenu.add(figureRightTriangle);
+
 		JMenuItem figureDiamond = new JMenuItem(canvas.getDiamondAction());
 		figureMenu.add(figureDiamond);
 
@@ -450,18 +460,18 @@ public class DrawerFrame extends JFrame
 		JMenuItem JImgMenu = new JMenuItem(canvas.getImageAction());
 		figureMenu.add(JImgMenu);
 
-		JMenu toolMenu = new JMenu("Tools (T)");
+		JMenu toolMenu = new JMenu(DrawerView.Labels.get("Tools (T)"));
 		toolMenu.setMnemonic('T');
 		menus.add(toolMenu);
 
-		JMenuItem talkItem = new JMenuItem("Talk (K)");
+		JMenuItem talkItem = new JMenuItem(DrawerView.Labels.get("Talk (K)"));
 		talkItem.setMnemonic('K');
 		toolMenu.add(talkItem);
 		talkItem.addActionListener((e) -> {
 					talkDialog.setVisible(true);
 				});
 
-		JMenuItem modalTool = new JMenuItem("Figure Dialog (D)");
+		JMenuItem modalTool = new JMenuItem(DrawerView.Labels.get("Figure Dialog (D)"));
 		modalTool.setMnemonic('D');
 		toolMenu.add(modalTool);
 		modalTool.addActionListener((e) -> {
@@ -474,7 +484,7 @@ public class DrawerFrame extends JFrame
 					dialog.setVisible(true);
 				});
 
-		JMenuItem tableTool = new JMenuItem("Figure Table (B)");
+		JMenuItem tableTool = new JMenuItem(DrawerView.Labels.get("Figure Table (B)"));
 		tableTool.setMnemonic('B');
 		toolMenu.add(tableTool);
 		tableTool.addActionListener((e) -> {
@@ -487,7 +497,7 @@ public class DrawerFrame extends JFrame
 					tableDialog.setVisible(true);
 				});
 
-		JMenuItem treeTool = new JMenuItem("Figure Tree (R)");
+		JMenuItem treeTool = new JMenuItem(DrawerView.Labels.get("Figure Tree (R)"));
 		treeTool.setMnemonic('R');
 		toolMenu.add(treeTool);
 		treeTool.addActionListener((e) -> {
@@ -500,7 +510,7 @@ public class DrawerFrame extends JFrame
 					treeDialog.setVisible(true);
 				});
 
-		JMenu zoomMenu = new JMenu("Zoom");
+		JMenu zoomMenu = new JMenu(DrawerView.Labels.get("Zoom"));
 		zoomMenu.setMnemonic('Z');
 		toolMenu.add(zoomMenu);
 
@@ -509,21 +519,57 @@ public class DrawerFrame extends JFrame
 		zoomMenu.add(zoom100);
 		zoom100.addActionListener((e) -> canvas.zoom(100));
 
+		JMenuItem zoom90 = new JMenuItem("90%");
+		zoom90.setMnemonic('9');
+		zoomMenu.add(zoom90);
+		zoom90.addActionListener((e) -> canvas.zoom(90));
+
 		JMenuItem zoom80 = new JMenuItem("80%");
 		zoom80.setMnemonic('8');
 		zoomMenu.add(zoom80);
 		zoom80.addActionListener((e) -> canvas.zoom(80));
+
+		JMenuItem zoom70 = new JMenuItem("70%");
+		zoom70.setMnemonic('7');
+		zoomMenu.add(zoom70);
+		zoom70.addActionListener((e) -> canvas.zoom(70));
+
+		JMenuItem zoom60 = new JMenuItem("60%");
+		zoom60.setMnemonic('6');
+		zoomMenu.add(zoom60);
+		zoom60.addActionListener((e) -> canvas.zoom(60));
 
 		JMenuItem zoom50 = new JMenuItem("50%");
 		zoom50.setMnemonic('5');
 		zoomMenu.add(zoom50);
 		zoom50.addActionListener((e) -> canvas.zoom(50));
 
-		JMenu helpMenu = new JMenu("Help (H)");
+		JMenuItem zoom40 = new JMenuItem("40%");
+		zoom40.setMnemonic('4');
+		zoomMenu.add(zoom40);
+		zoom40.addActionListener((e) -> canvas.zoom(40));
+
+		JMenuItem zoom30 = new JMenuItem("30%");
+		zoom30.setMnemonic('3');
+		zoomMenu.add(zoom30);
+		zoom30.addActionListener((e) -> canvas.zoom(30));
+
+		JMenuItem zoom20 = new JMenuItem("20%");
+		zoom20.setMnemonic('2');
+		zoomMenu.add(zoom20);
+		zoom20.addActionListener((e) -> canvas.zoom(20));
+
+		JMenuItem zoom10 = new JMenuItem("10%");
+		zoom10.setMnemonic('0');
+		zoomMenu.add(zoom10);
+		zoom10.addActionListener((e) -> canvas.zoom(10));
+
+
+		JMenu helpMenu = new JMenu(DrawerView.Labels.get("Help (H)"));
 		helpMenu.setMnemonic('H');
 		menus.add(helpMenu);
 
-		JMenuItem infoHelp = new JMenuItem("Drawer information (I)");
+		JMenuItem infoHelp = new JMenuItem(DrawerView.Labels.get("Drawer information (I)"));
 		infoHelp.setMnemonic('I');
 		helpMenu.add(infoHelp);
 		infoHelp.addActionListener((e) ->

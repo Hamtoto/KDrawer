@@ -15,7 +15,7 @@ public class KTrianglePopup extends KFigurePopup
 	public KTrianglePopup(DrawerView view, String title, boolean fillFlag) {
 		super(view, title, fillFlag);
 //////
-		JMenu angleMenu = new JMenu("Angle");
+		JMenu angleMenu = new JMenu(DrawerView.Labels.get("Angle"));
 		popupPtr.add(angleMenu);
 
 		ButtonGroup group = new ButtonGroup();

@@ -188,6 +188,10 @@ public class FigureDialog extends JDialog
 			{
 				newFigure = new KTriangle(color,x1,y1,x2,y2);
 				newFigure.setPopup(view.getTrianglePopup());
+			} else if (selection.equals("Right Triangle"))
+			{
+				newFigure = new KRightTriangle(color,x1,y1,x2,y2);
+				newFigure.setPopup(view.getRightTrianglePopup());
 			} else if (selection.equals("Diamond"))
 			{
 				newFigure = new KDiamond(color,x1,y1,x2,y2);

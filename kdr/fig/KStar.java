@@ -1,5 +1,6 @@
 package kdr.fig;
 
+import kdr.gui.*;
 import kdr.gui.popup.*;
 import java.awt.*;
 
@@ -173,9 +174,9 @@ public class KStar extends KTwoPointFigure
 		super.preparePopup();
 		KStarPopup starPopup = (KStarPopup)popup;
 		if (isStar == true) {
-			starPopup.setChangeShapeLabel("To Pentagon");
+			starPopup.setChangeShapeLabel(DrawerView.Labels.get("To Pentagon"));
 		} else {
-			starPopup.setChangeShapeLabel("To Star");
+			starPopup.setChangeShapeLabel(DrawerView.Labels.get("To Star"));
 		}
 	}
 }

@@ -16,11 +16,11 @@ public class KLinesPopup extends KFigurePopup
 		fillItem.setEnabled(false);
 //////		
 
-		JMenuItem arrowItem = new JMenuItem("Arrow");
+		JMenuItem arrowItem = new JMenuItem(DrawerView.Labels.get("Arrow"));
 		arrowItem.addActionListener((evt) -> view.setLineArrow());
 		popupPtr.add(arrowItem);
 
-		doorItem = new JMenuItem("Close");
+		doorItem = new JMenuItem(DrawerView.Labels.get("Close"));
 		doorItem.addActionListener((evt) -> view.changeLinesDoor());
 		popupPtr.add(doorItem);
 	}

@@ -12,7 +12,7 @@ public class KBoxPopup extends KFigurePopup
 	public KBoxPopup(DrawerView view, String title, boolean fillFlag) {
 		super(view, title, fillFlag);
 //////
-		roundItem = new JCheckBoxMenuItem("Round");
+		roundItem = new JCheckBoxMenuItem(DrawerView.Labels.get("Round"));
 		roundItem.addActionListener((evt) -> view.boxToRoundBox());
 		popupPtr.add(roundItem);
 		roundItem.setSelected(false);

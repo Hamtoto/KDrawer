@@ -1,5 +1,6 @@
 package kdr.fig;
 
+import kdr.gui.*;
 import kdr.gui.popup.*;
 import java.awt.*;
 import java.util.*;
@@ -33,10 +34,10 @@ public class KLines extends KLinearFigure
 		super.preparePopup();
 		KLinesPopup linesPopup = (KLinesPopup)popup;
 		if (closedFlag == true) {
-			linesPopup.setDoorLabel("Open");
+			linesPopup.setDoorLabel(DrawerView.Labels.get("Open"));
 			linesPopup.setEnableFillItem(true);
 		} else {
-			linesPopup.setDoorLabel("Close");
+			linesPopup.setDoorLabel(DrawerView.Labels.get("Close"));
 			linesPopup.setEnableFillItem(false);
 		}
 		if (fillFlag && closedFlag) {

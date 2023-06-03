@@ -19,14 +19,14 @@ public class KFigurePopup extends KObjectPopup
 	public KFigurePopup(DrawerView view, String title, boolean fillFlag) {
 		super(view,title);
 //////		
-		resizeItem = new JMenuItem("Resize");
+		resizeItem = new JMenuItem(DrawerView.Labels.get("Resize"));
 		resizeItem.addActionListener((evt) -> view.resizeFigure());
 		popupPtr.add(resizeItem);
 
 		JMenu colorMenu = new KColorSubmenu(view);
 		popupPtr.add(colorMenu);
 //////
-		JMenu thicknessMenu = new JMenu("Thickness");
+		JMenu thicknessMenu = new JMenu(DrawerView.Labels.get("Thickness"));
 		popupPtr.add(thicknessMenu);
 
 		ButtonGroup group = new ButtonGroup();
@@ -47,7 +47,7 @@ public class KFigurePopup extends KObjectPopup
 		
 		if (fillFlag == true)
 		{
-			fillItem = new JMenuItem("Fill");
+			fillItem = new JMenuItem(DrawerView.Labels.get("Fill"));
 			fillItem.addActionListener((evt) -> view.fillFigure());
 			popupPtr.add(fillItem);
 		}		

@@ -188,13 +188,17 @@ public class DrawerView extends JPanel
 
 	public static String[] figureType 
 		= { "Point", "Box", "Line", "Lines", "Curve", "Arrow", "Circle", 
-			"Triangle", "Diamond", "Star", "Scribble", "Text", "Image", "Eraser" };
+			"Triangle", "Right Triangle", "Diamond", "Star", "Scribble", "Text", "Image", "Eraser" };
 	public static String[] koreanFigureType 
 		= { "점", "사각형", "선분", "여러 선", "곡선", "화살표", "원", 
-			"삼각형", "마름모", "별", "낙서", "텍스트", "그림", "지우개" };
+			"삼각형", "직삼각형", "마름모", "별", "낙서", "텍스트", "그림", "지우개" };
 	public static ArrayList<String> figureTypeNames 
 									= new ArrayList<String>();
 	public static HashMap figureTypes = new HashMap<String,String>();
+
+
+	public static StringMap KRLabels = new StringMap();
+	public static StringMap Labels; 
 	// static initializer
 	static {
 		for(int i = 0; i < figureType.length; i++) {
@@ -203,6 +207,78 @@ public class DrawerView extends JPanel
 		for(int i = 0; i < figureType.length; i++) {
 			figureTypes.put(figureType[i],koreanFigureType[i]);
 		}
+		KRLabels.put("File (F)","파일 (F)");
+		KRLabels.put("New File (N)","새 파일 (N)");
+		KRLabels.put("Open File (O)","열기 (O)");
+		KRLabels.put("Save (S)","저장 (S)");
+		KRLabels.put("Save As (A)","다른 이름으로 저장 (A)");
+		KRLabels.put("Print (P)","인쇄 (P)");
+		KRLabels.put("Exit (X)","종료 (X)" );
+
+		KRLabels.put("Figure (G)","그림 (G)");
+		KRLabels.put("Point (P)","점 (P)");
+		KRLabels.put("Box (B)","사각형 (B)");
+		KRLabels.put("Line (L)", "선 (L)");
+		KRLabels.put("Lines (S)","여러 선 (S)");
+		KRLabels.put("Curve (V)","곡선 (V)");
+		KRLabels.put("Arrow (A)","화살표 (A)");
+		KRLabels.put("Circle (C)","원 (C)");
+		KRLabels.put("Triangle (T)", "삼각형 (T)");
+		KRLabels.put("Right Triangle (H)", "직삼각형 (H)");
+		KRLabels.put("Diamond (D)","마름모 (D)");
+		KRLabels.put("Star (R)" , "별 (R)");
+		KRLabels.put("Scribble (B)" ,"낙서 (B)");
+		KRLabels.put("Text (X)", "텍스트 (X)");
+		KRLabels.put("Image (I)", "이미지 (I)");
+		
+		KRLabels.put("Tools (T)","도구 (T)");
+		KRLabels.put("Talk (K)","토크 (K)");
+		KRLabels.put("Figure Dialog (D)","그리기 대화상자 (D)");
+		KRLabels.put("Figure Table (B)","그리기 테이블 (B)");
+		KRLabels.put("Figure Tree (R)","그리기 트리 (R)");
+		KRLabels.put("Zoom","줌");
+		KRLabels.put("Help (H)","도움말 (H)");
+		KRLabels.put("Drawer information (I)","Drawer 정보 (I)");
+
+		KRLabels.put("Figure","그림");
+		KRLabels.put("Point","점");
+		KRLabels.put("Box","사각형");
+		KRLabels.put("Line", "선");
+		KRLabels.put("Lines","여러 선");
+		KRLabels.put("Curve","곡선");
+		KRLabels.put("Arrow","화살표");
+		KRLabels.put("Circle","원");
+		KRLabels.put("Triangle", "삼각형");
+		KRLabels.put("Right Triangle", "직삼각형");
+		KRLabels.put("Diamond","마름모");
+		KRLabels.put("Star" , "별");
+		KRLabels.put("Scribble" ,"낙서");
+		KRLabels.put("Text", "텍스트");
+		KRLabels.put("Image", "이미지");
+		KRLabels.put("Eraser", "지우개");
+
+		KRLabels.put("Delete","지우기");
+		KRLabels.put("Copy","복사하기");
+		KRLabels.put("Resize","다시그리기");
+		KRLabels.put("Colors","색 정하기");
+		KRLabels.put("Thickness","굵기 정하기");
+		KRLabels.put("Fill","채우기");
+		KRLabels.put("Round","둥근 사각형으로");
+		KRLabels.put("Arrow","화살표");
+		KRLabels.put("Close","폐쇄하기");
+		KRLabels.put("Open","개방하기");
+		KRLabels.put("Angle","각도정하기");
+		KRLabels.put("To Pentagon","오각형으로");
+		KRLabels.put("To Star","별로");
+		KRLabels.put("Font","글꼴바꾸기");
+		KRLabels.put("Edit","편집하기");
+		KRLabels.put("Black","검정색");
+		KRLabels.put("Red","빨강색");
+		KRLabels.put("Green","초록색");
+		KRLabels.put("Blue","파랑색");
+		KRLabels.put("Chooser","색상 선택하기");
+
+		Labels = KRLabels;
 	}
 
 	public static int INIT_WIDTH = 3000;
@@ -219,12 +295,13 @@ public class DrawerView extends JPanel
 	public static int ID_KARROW = 5;
 	public static int ID_KCIRCLE = 6;
 	public static int ID_KTRIANGLE = 7;	
-	public static int ID_KDIAMOND = 8;
-	public static int ID_KSTAR = 9;
-	public static int ID_KSCRIBBLE = 10;
-	public static int ID_KTEXT = 11;
-	public static int ID_KIMAGE = 12;
-	public static int ID_KERASER = 13;
+	public static int ID_KRIGHTTRIANGLE = 8;	
+	public static int ID_KDIAMOND = 9;
+	public static int ID_KSTAR = 10;
+	public static int ID_KSCRIBBLE = 11;
+	public static int ID_KTEXT = 12;
+	public static int ID_KIMAGE = 13;
+	public static int ID_KERASER = 14;
 
 	public static int NOTHING = 0;
 	public static int DRAWING = 1;
@@ -255,6 +332,7 @@ public class DrawerView extends JPanel
 	private KPopup arrowPopup;
 	private KPopup circlePopup;
 	private KPopup trianglePopup;
+	private KPopup rightTrianglePopup;
 	private KPopup diamondPopup;
 	private KPopup starPopup;
 	private KPopup scribblePopup;
@@ -271,6 +349,7 @@ public class DrawerView extends JPanel
 	private SelectAction arrowAction;
 	private SelectAction circleAction;
 	private SelectAction triangleAction;
+	private SelectAction rightTriangleAction;
 	private SelectAction diamondAction;
 	private SelectAction starAction;
 	private SelectAction scribbleAction;
@@ -324,18 +403,20 @@ public class DrawerView extends JPanel
 						new FigureIcon(figureType[6]),this,ID_KCIRCLE);
 		triangleAction = new SelectAction("Triangle (T)",KeyEvent.VK_T,
 							new FigureIcon(figureType[7]),this,ID_KTRIANGLE);
+		rightTriangleAction = new SelectAction("Right Triangle (H)",KeyEvent.VK_H,
+					new FigureIcon(figureType[8]),this,ID_KRIGHTTRIANGLE);
 		diamondAction = new SelectAction("Diamond (D)",KeyEvent.VK_D,
-							new FigureIcon(figureType[8]), this, ID_KDIAMOND);
+							new FigureIcon(figureType[9]), this, ID_KDIAMOND);
 		starAction = new SelectAction("Star (R)",KeyEvent.VK_R, 
-							new FigureIcon(figureType[9]), this, ID_KSTAR);
+							new FigureIcon(figureType[10]), this, ID_KSTAR);
 		scribbleAction = new SelectAction("Scribble (B)",KeyEvent.VK_B,
-							new FigureIcon(figureType[10]), this, ID_KSCRIBBLE);
+							new FigureIcon(figureType[11]), this, ID_KSCRIBBLE);
 		textAction = new SelectAction("Text (X)",KeyEvent.VK_X,
-							new FigureIcon(figureType[11]),this,ID_KTEXT);
+							new FigureIcon(figureType[12]),this,ID_KTEXT);
 		imageAction = new SelectAction("Image (I)",KeyEvent.VK_I,
-							new FigureIcon(figureType[12]),this,ID_KIMAGE);
+							new FigureIcon(figureType[13]),this,ID_KIMAGE);
 		eraserAction = new SelectAction("Eraser (E)",KeyEvent.VK_E,
-							new FigureIcon(figureType[13]),this,ID_KERASER);
+							new FigureIcon(figureType[14]),this,ID_KERASER);
 		
 		mainPopup = new KMainPopup(this);
 		groupPopup = new KGroupPopup(this,"Group");
@@ -347,6 +428,7 @@ public class DrawerView extends JPanel
 		arrowPopup = new KArrowPopup(this,"Arrow",true);
 		circlePopup = new KCirclePopup(this,"Circle",true);
 		trianglePopup = new KTrianglePopup(this,"Triangle",true);
+		rightTrianglePopup = new KRightTrianglePopup(this,"Right Triangle",true);
 		diamondPopup = new KDiamondPopup(this, "Diamond", true);
 		starPopup = new KStarPopup(this, "Star", true);
 		scribblePopup = new KScribblePopup(this, "Scribble", false);
@@ -363,6 +445,7 @@ public class DrawerView extends JPanel
 		popups[i++] = arrowPopup;
 		popups[i++] = circlePopup;
 		popups[i++] = trianglePopup;
+		popups[i++] = rightTrianglePopup;
 		popups[i++] = diamondPopup;
 		popups[i++] = starPopup;
 		popups[i++] = scribblePopup;
@@ -481,6 +564,9 @@ public class DrawerView extends JPanel
 	public SelectAction getTriangleAction() {
 		return triangleAction;
 	}
+	public SelectAction getRightTriangleAction() {
+		return rightTriangleAction;
+	}
 	public SelectAction getDiamondAction() {
 		return diamondAction;
 	}
@@ -523,6 +609,9 @@ public class DrawerView extends JPanel
 	}
 	public KPopup getTrianglePopup() {
 		return trianglePopup;
+	}
+	public KPopup getRightTrianglePopup() {
+		return rightTrianglePopup;
 	}
 	public KPopup getDiamondPopup() {
 		return diamondPopup;
@@ -784,6 +873,9 @@ public class DrawerView extends JPanel
 		} else if (whatToDraw == ID_KTRIANGLE) {
 			selectedFigure = new KTriangle(currentColor,x,y);
 			selectedFigure.setPopup(trianglePopup);
+		} else if (whatToDraw == ID_KRIGHTTRIANGLE) {
+			selectedFigure = new KRightTriangle(currentColor,x,y);
+			selectedFigure.setPopup(rightTrianglePopup);
 		} else if (whatToDraw == ID_KDIAMOND) {
 			selectedFigure = new KDiamond(currentColor,x,y);
 			selectedFigure.setPopup(diamondPopup);

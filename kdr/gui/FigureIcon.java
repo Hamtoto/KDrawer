@@ -72,18 +72,23 @@ class FigureIcon implements Icon
 			g.drawLine(x+WIDTH/2,y-1,x,y+HEIGHT-1);
 			g.drawLine(x+WIDTH/2,y-1,x+WIDTH,y+HEIGHT-1);
 			g.drawLine(x,y+HEIGHT-1,x+WIDTH,y+HEIGHT-1);
-		} else if (figureType.equals(DrawerView.figureType[8])) // Diamond
+		} else if (figureType.equals(DrawerView.figureType[8])) // Right Triangle
+		{
+			g.drawLine(x,y,x,y+HEIGHT);
+			g.drawLine(x,y+HEIGHT,x+WIDTH,y+HEIGHT);
+			g.drawLine(x+WIDTH,y+HEIGHT,x,y);
+		} else if (figureType.equals(DrawerView.figureType[9])) // Diamond
 		{
 			g.drawPolygon(new int[] {x + (WIDTH / 2), x + WIDTH, x + (WIDTH / 2), x},
 					new int[] {y, y + (HEIGHT / 2), y + HEIGHT,  y + (HEIGHT / 2)}, 4);
-		} else if (figureType.equals(DrawerView.figureType[9])) // Star
+		} else if (figureType.equals(DrawerView.figureType[10])) // Star
 		{
 			int xpoints[] = new int[10];
 			int ypoints[] = new int[10];
 
 			KStar.makeStarPolygon(4,4,20,20,xpoints,ypoints);
 			g.drawPolygon(xpoints, ypoints, 10);
-		} else if (figureType.equals(DrawerView.figureType[10])) // Scribble
+		} else if (figureType.equals(DrawerView.figureType[11])) // Scribble
 		{
 			g.drawPolygon(new int[] {x + 1, x + 3, x + 14, x + 12, x + 1},
 					new int[] {y + 14, y + 14, y + 3, y + 1, y + 12}, 5);
@@ -93,20 +98,20 @@ class FigureIcon implements Icon
 					new int[] {y+6,y+3,y+1,y+4},4);
 			g.drawLine(x + 1,y + 14,x + 13, y + 14);
 
-		} else if (figureType.equals(DrawerView.figureType[11])) // Text
+		} else if (figureType.equals(DrawerView.figureType[12])) // Text
 		{
 			Font oldFont = g.getFont();
 			g.setFont(new Font("Times New Roman",Font.PLAIN,20));
 			g.drawString("T",x+1,y+15);
 			g.setFont(oldFont);
-		} else if (figureType.equals(DrawerView.figureType[12])) // KImage
+		} else if (figureType.equals(DrawerView.figureType[13])) // KImage
 		{
 			g.fillOval(x+WIDTH/3*2-1,y+HEIGHT/5,WIDTH/3,HEIGHT/3);
 			g.drawPolygon(new int[] {x, x + WIDTH, x + WIDTH, x},
 					new int[] {y, y, y + HEIGHT, y + HEIGHT}, 4);
 			g.fillPolygon(new int[] {x, x + 5, x + 8, x + WIDTH / 3 * 2 , x + WIDTH},
 					new int[] {y + HEIGHT, y + HEIGHT / 7 * 4, y + HEIGHT / 7 * 6, y + HEIGHT / 3 * 2, y + HEIGHT}, 5);
-		} else if (figureType.equals(DrawerView.figureType[13])) // Eraser
+		} else if (figureType.equals(DrawerView.figureType[14])) // Eraser
 		{
 			g.drawPolygon(new int[] {x + 4, x + 6, x + 14, x + 14, x + 10, x + 9, x + 1, x + 1},
 					new int[] {y + 14, y + 14, y + 6, y + 5, y + 1, y + 1, y + 9, y + 11}, 8);

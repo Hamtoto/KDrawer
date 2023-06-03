@@ -9,7 +9,7 @@ class SelectAction extends AbstractAction
 {
 	private DrawerView view;
 	public SelectAction(String name,int mnemonic,Icon icon,DrawerView view,int id) {
-		putValue(Action.NAME,name);
+		putValue(Action.NAME,DrawerView.Labels.get(name));
 		putValue(Action.SMALL_ICON,icon);
 		String names[] = name.split(" ");
 		putValue(Action.SHORT_DESCRIPTION,DrawerView.figureTypes.get(names[0]));
