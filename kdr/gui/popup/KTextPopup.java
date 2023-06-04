@@ -11,7 +11,6 @@ public class KTextPopup extends KObjectPopup
 	public KTextPopup(DrawerView view, String title) {
 		super(view, title);
 
-//////		
 		JMenu colorMenu = new KColorSubmenu(view);
 		popupPtr.add(colorMenu);
 
@@ -22,7 +21,6 @@ public class KTextPopup extends KObjectPopup
 		JMenuItem editItem = new JMenuItem(DrawerView.Labels.get("Edit"));
 		editItem.addActionListener((evt) -> view.editText());
 		popupPtr.add(editItem);
-//////
 	}
 }
 

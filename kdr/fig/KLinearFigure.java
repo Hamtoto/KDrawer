@@ -87,7 +87,6 @@ public abstract class KLinearFigure extends KFigure
 			return;
 		}
 
-		// 
 		for(int i = 0; i < list.size()-1; i++) {
 			Point pt1 = list.get(i);
 			Point pt2 = list.get(i+1);

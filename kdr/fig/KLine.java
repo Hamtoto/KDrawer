@@ -5,7 +5,7 @@ import java.awt.*;
 public class KLine extends KTwoPointFigure
 {
 	private static final long serialVersionUID = -2787538065501750475L;
-//////
+
 	static private int ARROW_LENGTH = 15;
 	static private int NONE = 0;
 	static private int HEAD = 1;
@@ -76,19 +76,6 @@ public class KLine extends KTwoPointFigure
 		}
 		g.drawLine(xpoints[0],ypoints[0],x2,y2);
 		g.drawLine(xpoints[1],ypoints[1],x2,y2);
-/*
-		int xpoints[] = new int[3];
-		int ypoints[] = new int[3];
-		if (w >= 0) {
-			xpoints[0] = x2 + dx1;	ypoints[0] = y2 + dy1;
-			xpoints[1] = x2 + dx2;	ypoints[1] = y2 + dy2;
-		} else {
-			xpoints[0] = x2 - dx1;	ypoints[0] = y2 - dy1;
-			xpoints[1] = x2 - dx2;	ypoints[1] = y2 - dy2;
-		}
-		xpoints[2] = x2;	ypoints[2] = y2;
-		g.fillPolygon(xpoints, ypoints, 3);
-*/
 	}
 	protected void drawDotEx(Graphics g) {
 		g.fillRect(x1-DOTSIZE/2,y1-DOTSIZE/2,DOTSIZE,DOTSIZE);
@@ -116,7 +103,6 @@ public class KLine extends KTwoPointFigure
 		newLine.whichDirection = whichDirection;
 		return newLine;
 	}
-//////
 public void makeRegion() {
       int regionWidth = 6;
       int x = x1;

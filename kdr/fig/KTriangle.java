@@ -7,7 +7,7 @@ public class KTriangle extends KTwoPointFigure
 {
 	//private static final long serialVersionUID = -2787538065501750475L;
 	protected boolean fillFlag;
-//////
+
 	private double cornerAngle;
 	public KTriangle(Color color) {
 		this(color,0,0);
@@ -109,5 +109,4 @@ public class KTriangle extends KTwoPointFigure
 		newTriangle.cornerAngle = cornerAngle;
 		return newTriangle;
 	}
-//////
 }

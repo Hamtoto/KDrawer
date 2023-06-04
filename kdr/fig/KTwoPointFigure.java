@@ -27,7 +27,6 @@ public abstract class KTwoPointFigure extends KFigure
 		x1 = x1 + dx; y1 = y1 + dy;
 		x2 = x2 + dx; y2 = y2 + dy;
 	}
-//////
 	public boolean isObsolete() {
 		if (x1 == x2 && y1 == y2) return true;
 		return false;
@@ -53,7 +52,7 @@ public abstract class KTwoPointFigure extends KFigure
 		
 		drawDotEx(g);
 	}
-//////
+
 	public void makeRegion() {
 		if (x1 > x2)
 		{
@@ -109,9 +108,8 @@ public abstract class KTwoPointFigure extends KFigure
 	public void setY2(int y) {
 		y2 = y;
 	}
-//////
 	public Point getStartPositionToResize(int x, int y) {
 		return new Point(x2,y2);
 	}
-//////
+
 }

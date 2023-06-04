@@ -31,9 +31,7 @@ public class KStar extends KTwoPointFigure
 		isStar = !isStar; // star <-> pentagon
 	}
 	protected void drawEx(Graphics g) {
-//////
 		super.drawEx(g);
-//////
 
 		int minX = Math.min(x1,x2);
 		int minY = Math.min(y1,y2);

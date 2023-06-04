@@ -29,7 +29,7 @@ public class KText extends KBox
 		}
 		return s;
 	}
-//////
+
 	public void setColor(Color color) {
 		super.setColor(color);
 	}
@@ -56,7 +56,7 @@ public class KText extends KBox
 		((Graphics2D)g).setStroke(new BasicStroke(1));
 		drawDotEx(g);
 	}
-//////
+
 	public KFigure copy() {
 		KText newText = new KText(color,font,x1,y1,x2,y2,lines);
 		newText.popup = popup;

@@ -38,7 +38,7 @@ public class KArrow extends KTwoPointFigure
 
 		int xpoints[] = new int[7];
 		int ypoints[] = new int[7];
-//////
+
 		xpoints[0] = x + dx/2;	ypoints[0] = y + dy/2;
 		xpoints[1] = x - dx/2;	ypoints[1] = y - dy/2;
 		xpoints[2] = x + w/2 - dx/2;	ypoints[2] = y + h/2 - dy/2;
@@ -46,7 +46,7 @@ public class KArrow extends KTwoPointFigure
 		xpoints[4] = x2;		ypoints[4] = y2;
 		xpoints[5] = x + w/2 + dx;	ypoints[5] = y + h/2 + dy;
 		xpoints[6] = x + w/2 + dx/2;	ypoints[6] = y + h/2 + dy/2;
-//////
+
 		g.drawPolygon(xpoints, ypoints, 7);
 
 		if (fillFlag == true)
@@ -57,7 +57,7 @@ public class KArrow extends KTwoPointFigure
 	public void setFill() {
 		fillFlag = !fillFlag;
 	}
-//////
+
 	protected void drawEx(Graphics g) {
 		if (dotFlag == true) drawDotEx(g);
 
@@ -72,7 +72,6 @@ public class KArrow extends KTwoPointFigure
 
 		drawDotEx(g);
 	}
-//////
 	public KFigure copy() {
 		KArrow newArrow = new KArrow(color,thickness,x1,y1,x2,y2);
 		newArrow.popup = popup;
@@ -98,7 +97,6 @@ public class KArrow extends KTwoPointFigure
 		int xpoints[] = new int[7];
 		int ypoints[] = new int[7];
 
-//////
 		xpoints[0] = x + dx/2;	ypoints[0] = y + dy/2;
 		xpoints[1] = x - dx/2;	ypoints[1] = y - dy/2;
 		xpoints[2] = x + w/2 - dx/2;	ypoints[2] = y + h/2 - dy/2;
@@ -106,7 +104,6 @@ public class KArrow extends KTwoPointFigure
 		xpoints[4] = x2;		ypoints[4] = y2;
 		xpoints[5] = x + w/2 + dx;	ypoints[5] = y + h/2 + dy;
 		xpoints[6] = x + w/2 + dx/2;	ypoints[6] = y + h/2 + dy/2;
-//////
 
 		region = new Polygon(xpoints,ypoints,7);
 	}

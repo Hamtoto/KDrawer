@@ -12,9 +12,7 @@ public class KLinesPopup extends KFigurePopup
 	public KLinesPopup(DrawerView view, String title, boolean fillFlag) {
 		super(view, title, fillFlag);
 
-//////	
 		fillItem.setEnabled(false);
-//////		
 
 		JMenuItem arrowItem = new JMenuItem(DrawerView.Labels.get("Arrow"));
 		arrowItem.addActionListener((evt) -> view.setLineArrow());

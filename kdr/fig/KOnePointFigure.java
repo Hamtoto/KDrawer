@@ -47,7 +47,7 @@ public abstract class KOnePointFigure extends KFigure
 	void setY1(int y) {
 		y1 = y;
 	}
-//////
+
 public Point getStartPositionToResize(int x, int y) {
 		return new Point(x1,y1);
 	}
@@ -64,5 +64,4 @@ public Point getStartPositionToResize(int x, int y) {
 		
 		drawDotEx(g);
 	}
-//////
 }

@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class KDiamond extends KTwoPointFigure
 {
-	//private static final long serialVersionUID = -5352317005542174751L;
+	private static final long serialVersionUID = -5352317005542174751L;
 	protected boolean fillFlag;
 
 	public KDiamond(Color color) {
@@ -24,9 +24,7 @@ public class KDiamond extends KTwoPointFigure
 		fillFlag = !fillFlag;
 	}
 	protected void drawEx(Graphics g) {
-//////
 		super.drawEx(g);
-//////
 
 		int minX = Math.min(x1,x2);
 		int minY = Math.min(y1,y2);

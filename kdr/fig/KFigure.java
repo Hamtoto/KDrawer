@@ -17,10 +17,10 @@ public abstract class KFigure implements Serializable
 	protected Color color;
 	protected int thickness;
 	transient protected KPopup popup;
-//////
+
 	protected static int DOTSIZE = 6;
 	transient protected boolean dotFlag;
-//////
+
 	public KFigure(Color color) {
 		this(color,1);
 	}
@@ -61,10 +61,8 @@ public abstract class KFigure implements Serializable
 	}
 	public void popup(JPanel view, int x, int y) {
 		// delegation
-//////
 		preparePopup();
 		popup.popup(view,x,y);
-//////
 	}
 	public abstract void setXY2(int x, int y);
 	public void draw(Graphics g) {
@@ -80,7 +78,6 @@ public abstract class KFigure implements Serializable
 		return fig;
 	}
 	public abstract KFigure copy();
-//////
 	public boolean getDotFlag() {
 		return dotFlag;
 	}
@@ -99,7 +96,6 @@ public abstract class KFigure implements Serializable
 		Rectangle2D boundBox = region.getBounds2D();
 		return selectorRegion.contains(boundBox);
 	}
-//////
 public boolean contains(int x, int y) {
 		if (region == null) return false;
 		return region.contains(x,y);

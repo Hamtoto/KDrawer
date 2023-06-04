@@ -50,7 +50,6 @@ class FigureIcon implements Icon
 			g2.draw(curve);
 		} else if (figureType.equals(DrawerView.figureType[5])) // Arrow
 		{
-//////
 			int xpoints[] = new int[7];
 			int ypoints[] = new int[7];
 
@@ -63,7 +62,6 @@ class FigureIcon implements Icon
 			xpoints[6] = x+WIDTH/2;		ypoints[6] = y+HEIGHT-4;
 
 			g.drawPolygon(xpoints, ypoints, 7);
-//////
 		} else if (figureType.equals(DrawerView.figureType[6])) // Circle
 		{
 			g.drawOval(x,y,WIDTH,HEIGHT);

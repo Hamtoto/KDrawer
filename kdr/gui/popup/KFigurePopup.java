@@ -9,23 +9,21 @@ import java.awt.event.*;
 public class KFigurePopup extends KObjectPopup
 {
 	private static final long serialVersionUID = 1311846301252431755L;
-//////		
 	static int nThickness = 4;
 	protected JMenuItem fillItem;
 	protected JMenuItem resizeItem;
 	protected JRadioButtonMenuItem thichnessItem[];
-//////		
 
 	public KFigurePopup(DrawerView view, String title, boolean fillFlag) {
 		super(view,title);
-//////		
+
 		resizeItem = new JMenuItem(DrawerView.Labels.get("Resize"));
 		resizeItem.addActionListener((evt) -> view.resizeFigure());
 		popupPtr.add(resizeItem);
 
 		JMenu colorMenu = new KColorSubmenu(view);
 		popupPtr.add(colorMenu);
-//////
+
 		JMenu thicknessMenu = new JMenu(DrawerView.Labels.get("Thickness"));
 		popupPtr.add(thicknessMenu);
 
@@ -40,10 +38,6 @@ public class KFigurePopup extends KObjectPopup
 			thicknessMenu.add(thichnessItem[i]);
 		}
 		thichnessItem[0].setSelected(true);
-
-		/*JMenuItem styleItem = new JMenuItem("Style");
-		styleItem.addActionListener((evt) -> view.setStyle());
-		popupPtr.add(styleItem);*/
 		
 		if (fillFlag == true)
 		{

@@ -4,7 +4,7 @@ import java.awt.geom.*;
 import java.awt.*;
 
 public class KScribble extends KLinearFigure implements Shape {
-    int xmin=0, xmax=0, ymin=0, ymax=0;  
+    int xmin = 0, xmax = 0, ymin = 0, ymax = 0;
     
 	public KScribble(Color color) {
 		this(color,0,0);
@@ -24,6 +24,7 @@ public class KScribble extends KLinearFigure implements Shape {
 		xmax = pt[0].x;
 		ymin = pt[0].y;
 		ymax = pt[0].y;
+
 		for(int i = 1; i < pt.length; i++) {
 			if (xmin > pt[i].x) xmin = pt[i].x;
 			if (xmax < pt[i].x) xmax = pt[i].x;

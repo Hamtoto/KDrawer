@@ -56,9 +56,6 @@ public class KImage extends KBox implements Serializable {
     }
 
     protected void drawEx(Graphics g) {
-//////
-//		super.drawEx(g);
-//////
 		if (dotFlag == true) drawDotEx(g);
 		
 		if (image != null) {

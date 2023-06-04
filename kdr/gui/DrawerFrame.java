@@ -14,7 +14,7 @@ public class DrawerFrame extends JFrame
 	static class ZoomBox extends JComboBox implements ActionListener
 	{
 		DrawerView canvas;
-		static String[] size = { "100","90","80","70", "60",  "50","40","30","20","10" };
+		static String[] size = { "100", "90", "80", "70", "60", "50", "40", "30", "20", "10"};
 		ZoomBox(DrawerView canvas) {
 			super(size);
 			this.canvas = canvas;

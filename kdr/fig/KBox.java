@@ -7,7 +7,7 @@ public class KBox extends KTwoPointFigure
 {
 	private static final long serialVersionUID = -5352317005542174751L;
 	protected boolean fillFlag;
-//////
+
 	private static int ArcLength = 30;
 	private boolean roundFlag;
 
@@ -32,9 +32,8 @@ public class KBox extends KTwoPointFigure
 		fillFlag = !fillFlag;
 	}
 	protected void drawEx(Graphics g) {
-//////
 		super.drawEx(g);
-//////
+
 		int minX = Math.min(x1,x2);
 		int minY = Math.min(y1,y2);
 		int width = Math.abs(x2-x1);
@@ -68,5 +67,4 @@ public class KBox extends KTwoPointFigure
 		newBox.roundFlag = roundFlag;
 		return newBox;
 	}
-//////
 }
