@@ -576,8 +576,8 @@ public class DrawerFrame extends JFrame
 					{ JOptionPane.showMessageDialog(null,
 							"KDrawer\n" +
 							"Project Email : k4kdrawer@gmail.com \n" +
-							"Busan University of Foreign Studies \n" +
-							"Department of Computer Science \n"); }
+							"Department of Computer Science \n" +
+							"Busan University of Foreign Studies \n"); }
 		);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}

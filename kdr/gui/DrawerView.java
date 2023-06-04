@@ -241,6 +241,7 @@ public class DrawerView extends JPanel
 		KRLabels.put("Drawer information (I)","Drawer 정보 (I)");
 
 		KRLabels.put("Figure","그림");
+		KRLabels.put("Group","그룹");
 		KRLabels.put("Point","점");
 		KRLabels.put("Box","사각형");
 		KRLabels.put("Line", "선");
