@@ -754,7 +754,7 @@ public class DrawerView extends JPanel
 		actionMode = NOTHING;
 		if (selectedFigure == null) return;
 		selectedFigure = null;
-		setWhatToDraw(ID_MOUSE);
+		//setWhatToDraw(ID_MOUSE);
 	}
 	public void stopCurveDrawing() {
 		removeGrabListener(mouseGrabber);
@@ -764,7 +764,7 @@ public class DrawerView extends JPanel
 		selectedFigure.draw(getGraphics());
 		addFigure(selectedFigure);
 		selectedFigure = null;
-		setWhatToDraw(ID_MOUSE);
+		//setWhatToDraw(ID_MOUSE);
 	}
 	public void stopLinesDrawing() {
 		removeGrabListener(mouseGrabber);
@@ -779,7 +779,7 @@ public class DrawerView extends JPanel
 			addFigure(selectedFigure);
 		}	
 		selectedFigure = null;
-		setWhatToDraw(ID_MOUSE);
+		//setWhatToDraw(ID_MOUSE);
 	}
     public void mouseClicked(MouseEvent e) {
 

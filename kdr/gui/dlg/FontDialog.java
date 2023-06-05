@@ -35,7 +35,6 @@ public class FontDialog extends JDialog {
 			fontFamilyPanel.setLayout(new BorderLayout()); 
 
 			fontLabel = new JLabel("Fonts: ");
-			fontLabel.setFont(new Font("Arial", Font.PLAIN, 14));
 			fontFamilyPanel.add(fontLabel, BorderLayout.NORTH);
 
 			Font[] fonts =  ge.getAllFonts();
@@ -48,7 +47,6 @@ public class FontDialog extends JDialog {
 			fontNameList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			fontNameList.setSelectedIndex(3);
 			fontNameList.addListSelectionListener(this);
-			fontNameList.setFont(new Font("Arial", Font.PLAIN, 16));
 			fontScrollPane = new JScrollPane(fontNameList);
 			fontFamilyPanel.add(fontScrollPane, BorderLayout.CENTER);
 
@@ -59,7 +57,6 @@ public class FontDialog extends JDialog {
 			fontStylePanel.setLayout(new BorderLayout()); 
 
 			styleLabel = new JLabel("Style: ");
-			styleLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 			fontStylePanel.add(styleLabel, BorderLayout.NORTH);
 
 			fontstyleArray = new String[]{"Regular", "Bold", "Italic", "Bold Italic"};
@@ -67,7 +64,6 @@ public class FontDialog extends JDialog {
 			fontStyleList.setSelectionMode(0);
 			fontStyleList.setSelectedIndex(1);
 			fontStyleList.addListSelectionListener(this);
-			fontStyleList.setFont(new Font("Arial", Font.PLAIN, 16));
 			styleScrollPane = new JScrollPane(fontStyleList);
 			fontStylePanel.add(styleScrollPane, BorderLayout.CENTER);
 
@@ -78,7 +74,6 @@ public class FontDialog extends JDialog {
 			fontSizePanel.setLayout(new BorderLayout()); 
 
 			sizeLabel = new JLabel("Sizes: ");
-			sizeLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 			fontSizePanel.add(sizeLabel, BorderLayout.NORTH); 
 
 			String[] fontSizeArray = new String[29];
@@ -90,7 +85,6 @@ public class FontDialog extends JDialog {
 			fontSizeList.setSelectionMode(0);
 			fontSizeList.setSelectedIndex(16);
 			fontSizeList.addListSelectionListener(this);
-			fontSizeList.setFont(new Font("Arial",Font.PLAIN,16));
 			fontSizeScrollPane = new JScrollPane(fontSizeList);
 			fontSizePanel.add(fontSizeScrollPane, BorderLayout.CENTER); 
 

@@ -72,9 +72,9 @@ class FigureIcon implements Icon
 			g.drawLine(x,y+HEIGHT-1,x+WIDTH,y+HEIGHT-1);
 		} else if (figureType.equals(DrawerView.figureType[8])) // Right Triangle
 		{
-			g.drawLine(x,y,x,y+HEIGHT);
-			g.drawLine(x,y+HEIGHT,x+WIDTH,y+HEIGHT);
-			g.drawLine(x+WIDTH,y+HEIGHT,x,y);
+			g.drawLine(x+2,y,x+2,y+HEIGHT-1);
+			g.drawLine(x+2,y+HEIGHT-1,x+WIDTH-4,y+HEIGHT-1);
+			g.drawLine(x+WIDTH-4,y+HEIGHT-1,x+2,y);
 		} else if (figureType.equals(DrawerView.figureType[9])) // Diamond
 		{
 			g.drawPolygon(new int[] {x + (WIDTH / 2), x + WIDTH, x + (WIDTH / 2), x},
