@@ -107,14 +107,19 @@ public class KSelector
 		}
 	}
 	public void draw(Graphics g) {
-		g.drawLine(x1,y1,x1,y2);
-		g.drawLine(x1,y2,x2,y2);
-		g.drawLine(x2,y2,x2,y1);
-		g.drawLine(x2,y1,x1,y1);
+		int[] xpoints = new int[4];
+		int[] ypoints = new int[4];
+
+		xpoints[0] = x1; ypoints[0] = y1;
+		xpoints[1] = x1; ypoints[1] = y2;
+		xpoints[2] = x2; ypoints[2] = y2;
+		xpoints[3] = x2; ypoints[3] = y1;
+
+		g.drawPolygon(xpoints,ypoints,4);
 	}
 	private void makeRegion() {
-		int xpoints[] = new int[4];
-		int ypoints[] = new int[4];
+		int[] xpoints = new int[4];
+		int[] ypoints= new int[4];
 
 		xpoints[0] = x1; ypoints[0] = y1;
 		xpoints[1] = x1; ypoints[1] = y2;
