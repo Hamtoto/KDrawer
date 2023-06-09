@@ -9,60 +9,63 @@ import java.awt.event.*;
 import javax.swing.filechooser.*;
 import java.awt.print.*;
 
-public class DrawerFrame extends JFrame
-{
-	static class ZoomBox extends JComboBox implements ActionListener
-	{
+public class DrawerFrame extends JFrame {
+	static class ZoomBox extends JComboBox implements ActionListener {
 		DrawerView canvas;
-		static String[] size = { "100", "90", "80", "70", "60", "50", "40", "30", "20", "10"};
+		static String[] size = {"100", "90", "80", "70", "60", "50", "40", "30", "20", "10"};
+
 		ZoomBox(DrawerView canvas) {
 			super(size);
 			this.canvas = canvas;
-			setMaximumSize(new Dimension(1500,200));
+			setMaximumSize(new Dimension(1500, 200));
 			addActionListener(this);
 		}
+
 		public void actionPerformed(ActionEvent e) {
-			JComboBox box = (JComboBox)e.getSource();
-			String ratio = (String)box.getSelectedItem();
+			JComboBox box = (JComboBox) e.getSource();
+			String ratio = (String) box.getSelectedItem();
 			canvas.zoom(Integer.parseInt(ratio));
 		}
 	}
-	static class PrintableView implements Printable
-	{
+
+	static class PrintableView implements Printable {
 		DrawerView canvas;
 		String fileName;
-		PrintableView(DrawerView canvas,String fileName) {
+
+		PrintableView(DrawerView canvas, String fileName) {
 			this.canvas = canvas;
 			this.fileName = fileName;
 		}
+
 		public int print(Graphics g, PageFormat format, int pagenum) {
 			if (pagenum > 0) return Printable.NO_SUCH_PAGE;
 
-			Graphics2D g2 = (Graphics2D)g;
-			double pageX = format.getImageableX()+1;
-			double pageY = format.getImageableY()+1;
-			g2.translate(pageX,pageY);
-			
-			int pageWidth = (int)format.getImageableWidth()-2;
-			int pageHeight = (int)format.getImageableHeight()-2;
+			Graphics2D g2 = (Graphics2D) g;
+			double pageX = format.getImageableX() + 1;
+			double pageY = format.getImageableY() + 1;
+			g2.translate(pageX, pageY);
 
-			g2.drawRect(-1,-1,pageWidth+2,pageHeight+2);
+			int pageWidth = (int) format.getImageableWidth() - 2;
+			int pageHeight = (int) format.getImageableHeight() - 2;
 
-			g2.setClip(0,0,pageWidth,pageHeight);
-			g2.scale(0.5,0.5);
+			g2.drawRect(-1, -1, pageWidth + 2, pageHeight + 2);
+
+			g2.setClip(0, 0, pageWidth, pageHeight);
+			g2.scale(0.5, 0.5);
 
 			canvas.paint(g);
 
-			g2.scale(2.0,2.0);
-			g2.drawString(fileName,0,pageHeight);
+			g2.scale(2.0, 2.0);
+			g2.drawString(fileName, 0, pageHeight);
 			return Printable.PAGE_EXISTS;
 		}
 	}
+
 	DrawerView canvas;
 	JToolBar selectToolBar;
 	JToolBar colorToolBar;
 	JToolBar networkToolBar;
-	JCheckBox realtimeButton; 
+	JCheckBox realtimeButton;
 	JButton sendMeButton;
 	JButton sendButton;
 	StatusBar statusBar;
@@ -77,6 +80,7 @@ public class DrawerFrame extends JFrame
 	KTalkDialog getTalkDialog() {
 		return talkDialog;
 	}
+
 	public void communicationEstablished() {
 		talkDialog.setVisible(true);
 		showNetworkToolBar(true);
@@ -85,6 +89,7 @@ public class DrawerFrame extends JFrame
 		enableSendMeButton(true);
 		enableSendButton(false);
 	}
+
 	public void communicationClosed() {
 		talkDialog.setVisible(false);
 		showNetworkToolBar(false);
@@ -93,189 +98,197 @@ public class DrawerFrame extends JFrame
 		enableSendMeButton(false);
 		enableSendButton(false);
 	}
+
 	public void showNetworkToolBar(boolean flag) {
 		networkToolBar.setVisible(flag);
 	}
+
 	public void setRTButton(boolean flag) {
 		realtimeButton.setSelected(flag);
 	}
+
 	public void enableSendMeButton(boolean flag) {
 		sendMeButton.setEnabled(flag);
 	}
+
 	public void enableSendButton(boolean flag) {
 		sendButton.setEnabled(flag);
 	}
+
 	public void changeSendMeButtonName(String name) {
 		sendMeButton.setLabel(name);
 	}
+
 	public DrawerView getCanvas() {
 		return canvas;
 	}
+
 	public void writePosition(String s) {
 		statusBar.writePosition(s);
 	}
+
 	public void writeFigureType(String s) {
 		statusBar.writeFigureType(s);
 	}
+
 	public void doOpen() {
-		JFileChooser chooser = 
-			new JFileChooser(System.getProperty("user.dir"));
+		JFileChooser chooser =
+				new JFileChooser(System.getProperty("user.dir"));
 		chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 		chooser.setDialogType(JFileChooser.OPEN_DIALOG);
-		chooser.setFileFilter(new FileNameExtensionFilter("KDrawer file","jdr"));
+		chooser.setFileFilter(new FileNameExtensionFilter("KDrawer file", "jdr"));
 		int value = chooser.showOpenDialog(null);
 		if (value != JFileChooser.APPROVE_OPTION) return;
 		fileName = chooser.getSelectedFile().getPath();
 		canvas.doOpen(fileName);
-		setTitle("KDrawer - ["+fileName + "]");
+		setTitle("KDrawer - [" + fileName + "]");
 	}
+
 	public void doSaveAs() {
-		JFileChooser chooser = 
-			new JFileChooser(System.getProperty("user.dir"));
+		JFileChooser chooser =
+				new JFileChooser(System.getProperty("user.dir"));
 		chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 		chooser.setDialogType(JFileChooser.SAVE_DIALOG);
-		chooser.setFileFilter(new FileNameExtensionFilter("KDrawer file","jdr"));
+		chooser.setFileFilter(new FileNameExtensionFilter("KDrawer file", "jdr"));
 		int value = chooser.showSaveDialog(null);
 		if (value != JFileChooser.APPROVE_OPTION) return;
 		fileName = chooser.getSelectedFile().getPath();
-		if (fileName.endsWith(".jdr") == false)
-		{
+		if (fileName.endsWith(".jdr") == false) {
 			fileName = fileName + ".jdr";
 		}
-		setTitle("KDrawer - ["+fileName + "]");
+		setTitle("KDrawer - [" + fileName + "]");
 		canvas.doSave(fileName);
 	}
+
 	public void doPrint() {
 		PrinterJob job = PrinterJob.getPrinterJob();
 
 		PageFormat page = job.defaultPage();
 		page.setOrientation(PageFormat.LANDSCAPE);
 
-		Printable printable = new PrintableView(canvas,fileName);
-		job.setPrintable(printable,page);
+		Printable printable = new PrintableView(canvas, fileName);
+		job.setPrintable(printable, page);
 
-		if (job.printDialog())
-		{
-			try
-			{
+		if (job.printDialog()) {
+			try {
 				job.print();
-			}
-			catch (PrinterException ex)
-			{
-				JOptionPane.showMessageDialog(this,ex.toString(),
-					"PrinterException",JOptionPane.ERROR_MESSAGE);
+			} catch (PrinterException ex) {
+				JOptionPane.showMessageDialog(this, ex.toString(),
+						"PrinterException", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
+
 	DrawerFrame() {
 		setTitle("KDrawer - [noname.jdr]");
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Dimension d = tk.getScreenSize();
 		int screenHeight = d.height;
 		int screenWidth = d.width;
-		setSize(screenWidth*2/3, screenHeight*2/3);
-		setLocation(screenWidth/6, screenHeight/6);
+		setSize(screenWidth * 2 / 3, screenHeight * 2 / 3);
+		setLocation(screenWidth / 6, screenHeight / 6);
 		Image img = tk.getImage("logo.png");
 		setIconImage(img);
-		
+
 		Container container = this.getContentPane();
 		statusBar = new StatusBar();
-		container.add(statusBar,"South");
+		container.add(statusBar, "South");
 		canvas = new DrawerView(this);
-		JScrollPane sp = new JScrollPane(canvas); 
-		container.add(sp,"Center");
+		JScrollPane sp = new JScrollPane(canvas);
+		container.add(sp, "Center");
 
 		talkDialog = new KTalkDialog(this);
 
 		sp.registerKeyboardAction(new ActionListener() {
-				public void actionPerformed(ActionEvent evt) {
-					JScrollBar scrollBar = sp.getVerticalScrollBar();
-					scrollBar.setValue(scrollBar.getValue() 
-						+ scrollBar.getBlockIncrement());
-				}
-			}
-			,KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_DOWN,0)
-			,JComponent.WHEN_IN_FOCUSED_WINDOW
+									  public void actionPerformed(ActionEvent evt) {
+										  JScrollBar scrollBar = sp.getVerticalScrollBar();
+										  scrollBar.setValue(scrollBar.getValue()
+												  + scrollBar.getBlockIncrement());
+									  }
+								  }
+				, KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_DOWN, 0)
+				, JComponent.WHEN_IN_FOCUSED_WINDOW
 		);
 		sp.registerKeyboardAction(new ActionListener() {
-				public void actionPerformed(ActionEvent evt) {
-					JScrollBar scrollBar = sp.getVerticalScrollBar();
-					scrollBar.setValue(scrollBar.getValue() 
-						- scrollBar.getBlockIncrement());
-				}
-			}
-			,KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_UP,0)
-			,JComponent.WHEN_IN_FOCUSED_WINDOW
+									  public void actionPerformed(ActionEvent evt) {
+										  JScrollBar scrollBar = sp.getVerticalScrollBar();
+										  scrollBar.setValue(scrollBar.getValue()
+												  - scrollBar.getBlockIncrement());
+									  }
+								  }
+				, KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_UP, 0)
+				, JComponent.WHEN_IN_FOCUSED_WINDOW
 		);
 		sp.registerKeyboardAction((evt) -> {
 					JScrollBar scrollBar = sp.getHorizontalScrollBar();
-					scrollBar.setValue(scrollBar.getValue() 
-						+ scrollBar.getBlockIncrement());
+					scrollBar.setValue(scrollBar.getValue()
+							+ scrollBar.getBlockIncrement());
 				}
-			,KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_DOWN,InputEvent.CTRL_MASK)
-			,JComponent.WHEN_IN_FOCUSED_WINDOW
+				, KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_DOWN, InputEvent.CTRL_MASK)
+				, JComponent.WHEN_IN_FOCUSED_WINDOW
 		);
 		sp.registerKeyboardAction((evt) -> {
 					JScrollBar scrollBar = sp.getHorizontalScrollBar();
-					scrollBar.setValue(scrollBar.getValue() 
-						- scrollBar.getBlockIncrement());
+					scrollBar.setValue(scrollBar.getValue()
+							- scrollBar.getBlockIncrement());
 				}
-			,KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_UP,InputEvent.CTRL_MASK)
-			,JComponent.WHEN_IN_FOCUSED_WINDOW
+				, KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_UP, InputEvent.CTRL_MASK)
+				, JComponent.WHEN_IN_FOCUSED_WINDOW
 		);
 
 		sp.registerKeyboardAction((evt) -> canvas.increaseHeight()
-			,KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_DOWN,InputEvent.ALT_MASK)
-			,JComponent.WHEN_IN_FOCUSED_WINDOW
+				, KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_DOWN, InputEvent.ALT_MASK)
+				, JComponent.WHEN_IN_FOCUSED_WINDOW
 		);
 		sp.registerKeyboardAction((evt) -> canvas.increaseWidth()
-			,KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_UP,InputEvent.ALT_MASK)
-			,JComponent.WHEN_IN_FOCUSED_WINDOW
+				, KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_UP, InputEvent.ALT_MASK)
+				, JComponent.WHEN_IN_FOCUSED_WINDOW
 		);
 
 		sp.registerKeyboardAction((evt) -> canvas.stopLinesDrawing()
-			,KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE,0)
-			,JComponent.WHEN_IN_FOCUSED_WINDOW
+				, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0)
+				, JComponent.WHEN_IN_FOCUSED_WINDOW
 		);
 
 		sp.registerKeyboardAction((evt) -> canvas.deleteFigure()
-			,KeyStroke.getKeyStroke(KeyEvent.VK_DELETE,0)
-			,JComponent.WHEN_IN_FOCUSED_WINDOW
+				, KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0)
+				, JComponent.WHEN_IN_FOCUSED_WINDOW
 		);
 
 		sp.registerKeyboardAction((evt) -> canvas.copyFigure()
-			,KeyStroke.getKeyStroke(KeyEvent.VK_V,InputEvent.CTRL_MASK)
-			,JComponent.WHEN_IN_FOCUSED_WINDOW
+				, KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_MASK)
+				, JComponent.WHEN_IN_FOCUSED_WINDOW
 		);
 
 		sp.registerKeyboardAction((evt) -> canvas.undo()
-			,KeyStroke.getKeyStroke(KeyEvent.VK_Z,InputEvent.CTRL_MASK)
-			,JComponent.WHEN_IN_FOCUSED_WINDOW
+				, KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_MASK)
+				, JComponent.WHEN_IN_FOCUSED_WINDOW
 		);
 
 		selectToolBar = new JToolBar();
 		selectToolBar.add(new MouseAction(("Select (S)"),
-						new Icon()
-						{
-							public int getIconHeight() { return FigureIcon.HEIGHT;}
-							public int getIconWidth() { return FigureIcon.WIDTH; }
-							public void paintIcon(Component c,Graphics g,int x,int y) {
-								g.setColor(Color.black);
-								int xpoints[] = new int[7];
-								int ypoints[] = new int[7];
+				new Icon() {
+					public int getIconHeight() {return FigureIcon.HEIGHT;}
 
-								xpoints[0] = x+4;		ypoints[0] = y+2;
-								xpoints[1] = x+4;		ypoints[1] = y+FigureIcon.HEIGHT-2;
-								xpoints[2] = x+7;		ypoints[2] = y+FigureIcon.HEIGHT-5;
-								xpoints[3] = x+9;		ypoints[3] = y+FigureIcon.HEIGHT-1;
-								xpoints[4] = x+11;		ypoints[4] = y+FigureIcon.HEIGHT-2;
-								xpoints[5] = x+10;		ypoints[5] = y+FigureIcon.HEIGHT-5;
-								xpoints[6] = x+13;		ypoints[6] = y+FigureIcon.HEIGHT-6;
+					public int getIconWidth() {return FigureIcon.WIDTH;}
 
-								g.drawPolygon(xpoints, ypoints, 7);
-							}
-						}
-						, canvas));
+					public void paintIcon(Component c, Graphics g, int x, int y) {
+						g.setColor(Color.black);
+						int xpoints[] = new int[7];
+						int ypoints[] = new int[7];
+
+						xpoints[0] = x+4;		ypoints[0] = y+2;
+						xpoints[1] = x+4;		ypoints[1] = y+FigureIcon.HEIGHT-2;
+						xpoints[2] = x+7;		ypoints[2] = y+FigureIcon.HEIGHT-5;
+						xpoints[3] = x+9;		ypoints[3] = y+FigureIcon.HEIGHT-1;
+						xpoints[4] = x+11;		ypoints[4] = y+FigureIcon.HEIGHT-2;
+						xpoints[5] = x+10;		ypoints[5] = y+FigureIcon.HEIGHT-5;
+						xpoints[6] = x+13;		ypoints[6] = y+FigureIcon.HEIGHT-6;
+
+						g.drawPolygon(xpoints, ypoints, 7);
+					}
+				}
+				, canvas));
 		selectToolBar.add(canvas.getPointAction());
 		selectToolBar.add(canvas.getBoxAction());
 		selectToolBar.add(canvas.getLineAction());
@@ -294,39 +307,39 @@ public class DrawerFrame extends JFrame
 		selectToolBar.add(new ZoomBox(canvas));
 
 		colorToolBar = new JToolBar();
-		colorToolBar.add(new ColorAction("Black",Color.black,canvas));
-		colorToolBar.add(new ColorAction("Red",Color.red,canvas));
-		colorToolBar.add(new ColorAction("Green",Color.green,canvas));
-		colorToolBar.add(new ColorAction("Blue",Color.blue,canvas));
-		colorToolBar.add(new ColorAction("Color",Color.yellow,canvas));
+		colorToolBar.add(new ColorAction("Black", Color.black, canvas));
+		colorToolBar.add(new ColorAction("Red", Color.red, canvas));
+		colorToolBar.add(new ColorAction("Green", Color.green, canvas));
+		colorToolBar.add(new ColorAction("Blue", Color.blue, canvas));
+		colorToolBar.add(new ColorAction("Color", Color.yellow, canvas));
 		colorToolBar.add(Box.createGlue());
 
 		Box toolBarPanel = Box.createHorizontalBox();
 		networkToolBar = new JToolBar();
-		networkToolBar.add(realtimeButton = 
-							new JCheckBox("Real Time"));
+		networkToolBar.add(realtimeButton =
+				new JCheckBox("Real Time"));
 		realtimeButton.addActionListener((e) -> {
-				if (realtimeButton.isSelected()) {
-					talkDialog.sendString("RealTimeBegin");
-					enableSendMeButton(false);
-					enableSendButton(false);
-					canvas.setRealTimeExchangeFlag(true);
-				} else { 
-					talkDialog.sendString("RealTimeEnd");
-					enableSendMeButton(true);
-					canvas.setRealTimeExchangeFlag(false);
-				}
-			});
+			if (realtimeButton.isSelected()) {
+				talkDialog.sendString("RealTimeBegin");
+				enableSendMeButton(false);
+				enableSendButton(false);
+				canvas.setRealTimeExchangeFlag(true);
+			} else {
+				talkDialog.sendString("RealTimeEnd");
+				enableSendMeButton(true);
+				canvas.setRealTimeExchangeFlag(false);
+			}
+		});
 		networkToolBar.add(sendMeButton = new JButton("Send Me"));
 		sendMeButton.addActionListener((e) -> {
-				if (sendMeButton.getLabel().equals("Send Me")) {
-					talkDialog.sendString("SendMe");
-					changeSendMeButtonName("Cancel");
-				} else { // Cancel
-					talkDialog.sendString("Cancel");
-					changeSendMeButtonName("Send Me");
-				}
-			});
+			if (sendMeButton.getLabel().equals("Send Me")) {
+				talkDialog.sendString("SendMe");
+				changeSendMeButtonName("Cancel");
+			} else { // Cancel
+				talkDialog.sendString("Cancel");
+				changeSendMeButtonName("Send Me");
+			}
+		});
 		networkToolBar.add(sendButton = new JButton("Send"));
 		sendButton.addActionListener((e) -> talkDialog.sendFigures());
 		networkToolBar.setVisible(false);
@@ -335,15 +348,15 @@ public class DrawerFrame extends JFrame
 		toolBarPanel.add(colorToolBar);
 		toolBarPanel.add(networkToolBar);
 
-		container.add(toolBarPanel,BorderLayout.NORTH);
+		container.add(toolBarPanel, BorderLayout.NORTH);
 
 		addComponentListener(new ComponentAdapter() {
-					public void componentResized(ComponentEvent e) {
-						Dimension sz = canvas.getSize();
-						String s = "" + sz.width + " X " + sz.height + " px";
-						statusBar.writeSize(s);
-					}
-				});
+			public void componentResized(ComponentEvent e) {
+				Dimension sz = canvas.getSize();
+				String s = "" + sz.width + " X " + sz.height + " px";
+				statusBar.writeSize(s);
+			}
+		});
 
 		JMenuBar menus = new JMenuBar();
 		setJMenuBar(menus);
@@ -353,7 +366,7 @@ public class DrawerFrame extends JFrame
 		fileMenu.setMnemonic('F');
 
 		JMenuItem newFile
-			= new JMenuItem(DrawerView.Labels.get("New File (N)"));
+				= new JMenuItem(DrawerView.Labels.get("New File (N)"));
 		fileMenu.add(newFile);
 		newFile.setMnemonic('N');
 		newFile.setBackground(Color.white);
@@ -361,8 +374,8 @@ public class DrawerFrame extends JFrame
 		newFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
 		newFile.addActionListener((e) -> canvas.doFileNew());
 
-		JMenuItem openFile 
-			= new JMenuItem(DrawerView.Labels.get("Open File (O)"));
+		JMenuItem openFile
+				= new JMenuItem(DrawerView.Labels.get("Open File (O)"));
 		fileMenu.add(openFile);
 		openFile.setMnemonic('O');
 		openFile.setBackground(Color.white);
@@ -370,17 +383,17 @@ public class DrawerFrame extends JFrame
 		openFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
 		openFile.addActionListener((e) -> doOpen());
 
-		JMenuItem saveFile 
-			= new JMenuItem(DrawerView.Labels.get("Save (S)"));
+		JMenuItem saveFile
+				= new JMenuItem(DrawerView.Labels.get("Save (S)"));
 		fileMenu.add(saveFile);
 		saveFile.setMnemonic('S');
 		saveFile.setBackground(Color.white);
 		saveFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("saveFile.png")));
-		saveFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));	
+		saveFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
 		saveFile.addActionListener((e) -> canvas.doSave(fileName));
 
-		JMenuItem saveAsFile 
-			= new JMenuItem(DrawerView.Labels.get("Save As (A)"));
+		JMenuItem saveAsFile
+				= new JMenuItem(DrawerView.Labels.get("Save As (A)"));
 		fileMenu.add(saveAsFile);
 		saveAsFile.setMnemonic('A');
 		saveAsFile.setBackground(Color.white);
@@ -390,8 +403,8 @@ public class DrawerFrame extends JFrame
 
 		fileMenu.addSeparator();
 
-		JMenuItem printFile 
-			= new JMenuItem(DrawerView.Labels.get("Print (P)"));
+		JMenuItem printFile
+				= new JMenuItem(DrawerView.Labels.get("Print (P)"));
 		fileMenu.add(printFile);
 		printFile.setMnemonic('P');
 		printFile.setBackground(Color.white);
@@ -400,9 +413,9 @@ public class DrawerFrame extends JFrame
 		printFile.addActionListener((e) -> doPrint());
 
 		fileMenu.addSeparator();
-	
-		JMenuItem exit 
-			= new JMenuItem(DrawerView.Labels.get("Exit (X)"));
+
+		JMenuItem exit
+				= new JMenuItem(DrawerView.Labels.get("Exit (X)"));
 		fileMenu.add(exit);
 		exit.setMnemonic('X');
 		exit.setBackground(Color.white);
@@ -468,47 +481,44 @@ public class DrawerFrame extends JFrame
 		talkItem.setMnemonic('K');
 		toolMenu.add(talkItem);
 		talkItem.addActionListener((e) -> {
-					talkDialog.setVisible(true);
-				});
+			talkDialog.setVisible(true);
+		});
 
 		JMenuItem modalTool = new JMenuItem(DrawerView.Labels.get("Figure Dialog (D)"));
 		modalTool.setMnemonic('D');
 		toolMenu.add(modalTool);
 		modalTool.addActionListener((e) -> {
-					if (dialog == null)
-					{
-						dialog = 
-							new FigureDialog("Figure Dialog",canvas);
-						dialog.setModal(true);
-					}
-					dialog.setVisible(true);
-				});
+			if (dialog == null) {
+				dialog =
+						new FigureDialog("Figure Dialog", canvas);
+				dialog.setModal(true);
+			}
+			dialog.setVisible(true);
+		});
 
 		JMenuItem tableTool = new JMenuItem(DrawerView.Labels.get("Figure Table (B)"));
 		tableTool.setMnemonic('B');
 		toolMenu.add(tableTool);
 		tableTool.addActionListener((e) -> {
-					if (tableDialog == null)
-					{
-						tableDialog = 
-							new TableDialog("Table Dialog",canvas);
-						tableDialog.setModal(true);
-					}
-					tableDialog.setVisible(true);
-				});
+			if (tableDialog == null) {
+				tableDialog =
+						new TableDialog("Table Dialog", canvas);
+				tableDialog.setModal(true);
+			}
+			tableDialog.setVisible(true);
+		});
 
 		JMenuItem treeTool = new JMenuItem(DrawerView.Labels.get("Figure Tree (R)"));
 		treeTool.setMnemonic('R');
 		toolMenu.add(treeTool);
 		treeTool.addActionListener((e) -> {
-					if (treeDialog == null)
-					{
-						treeDialog = 
-							new TreeDialog("Tree Dialog",canvas);
-						treeDialog.setModal(true);
-					}
-					treeDialog.setVisible(true);
-				});
+			if (treeDialog == null) {
+				treeDialog =
+						new TreeDialog("Tree Dialog", canvas);
+				treeDialog.setModal(true);
+			}
+			treeDialog.setVisible(true);
+		});
 
 		JMenu zoomMenu = new JMenu(DrawerView.Labels.get("Zoom"));
 		zoomMenu.setMnemonic('Z');
@@ -573,14 +583,14 @@ public class DrawerFrame extends JFrame
 		infoHelp.setMnemonic('I');
 		helpMenu.add(infoHelp);
 		infoHelp.addActionListener((e) ->
-					{ JOptionPane.showMessageDialog(null,
+				{
+					JOptionPane.showMessageDialog(null,
 							"KDrawer\n" +
-							"Project Email : k4kdrawer@gmail.com \n" +
-							"Department of Computer Science \n" +
-							"Busan University of Foreign Studies \n"); }
+									"Project Email : k4kdrawer@gmail.com \n" +
+									"Department of Computer Science \n" +
+									"Busan University of Foreign Studies \n");
+				}
 		);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 }
-
-
