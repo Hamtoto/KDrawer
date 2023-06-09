@@ -188,10 +188,10 @@ public class DrawerView extends JPanel
 
 	public static String[] figureType 
 		= { "Point", "Box", "Line", "Lines", "Curve", "Arrow", "Circle", 
-			"Triangle", "Right Triangle", "Diamond", "Star", "Scribble", "Text", "Image", "Eraser" };
+			"Triangle", "RightTriangle", "Diamond", "Star", "Scribble", "Text", "Image", "Eraser" };
 	public static String[] koreanFigureType 
 		= { "점", "사각형", "선분", "여러 선", "곡선", "화살표", "원", 
-			"삼각형", "직삼각형", "마름모", "별", "낙서", "텍스트", "그림", "지우개" };
+			"삼각형", "직각삼각형", "마름모", "별", "낙서", "텍스트", "그림", "지우개" };
 	public static ArrayList<String> figureTypeNames 
 									= new ArrayList<String>();
 	public static HashMap figureTypes = new HashMap<String,String>();
@@ -224,7 +224,7 @@ public class DrawerView extends JPanel
 		KRLabels.put("Arrow (A)","화살표 (A)");
 		KRLabels.put("Circle (C)","원 (C)");
 		KRLabels.put("Triangle (T)", "삼각형 (T)");
-		KRLabels.put("Right Triangle (H)", "직삼각형 (H)");
+		KRLabels.put("RightTriangle (H)", "직각삼각형 (H)");
 		KRLabels.put("Diamond (D)","마름모 (D)");
 		KRLabels.put("Star (R)" , "별 (R)");
 		KRLabels.put("Scribble (B)" ,"낙서 (B)");
@@ -250,7 +250,7 @@ public class DrawerView extends JPanel
 		KRLabels.put("Arrow","화살표");
 		KRLabels.put("Circle","원");
 		KRLabels.put("Triangle", "삼각형");
-		KRLabels.put("Right Triangle", "직삼각형");
+		KRLabels.put("RightTriangle", "직각삼각형");
 		KRLabels.put("Diamond","마름모");
 		KRLabels.put("Star" , "별");
 		KRLabels.put("Scribble" ,"낙서");
@@ -404,7 +404,7 @@ public class DrawerView extends JPanel
 						new FigureIcon(figureType[6]),this,ID_KCIRCLE);
 		triangleAction = new SelectAction("Triangle (T)",KeyEvent.VK_T,
 							new FigureIcon(figureType[7]),this,ID_KTRIANGLE);
-		rightTriangleAction = new SelectAction("Right Triangle (H)",KeyEvent.VK_H,
+		rightTriangleAction = new SelectAction("RightTriangle (H)",KeyEvent.VK_H,
 					new FigureIcon(figureType[8]),this,ID_KRIGHTTRIANGLE);
 		diamondAction = new SelectAction("Diamond (D)",KeyEvent.VK_D,
 							new FigureIcon(figureType[9]), this, ID_KDIAMOND);
@@ -429,7 +429,7 @@ public class DrawerView extends JPanel
 		arrowPopup = new KArrowPopup(this,"Arrow",true);
 		circlePopup = new KCirclePopup(this,"Circle",true);
 		trianglePopup = new KTrianglePopup(this,"Triangle",true);
-		rightTrianglePopup = new KRightTrianglePopup(this,"Right Triangle",true);
+		rightTrianglePopup = new KRightTrianglePopup(this,"RightTriangle",true);
 		diamondPopup = new KDiamondPopup(this, "Diamond", true);
 		starPopup = new KStarPopup(this, "Star", true);
 		scribblePopup = new KScribblePopup(this, "Scribble", false);

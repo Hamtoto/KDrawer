@@ -19,7 +19,6 @@ public class KText extends KBox
 		this.lines = lines;
 		this.font = font;
 	}
-//////
 	public void preparePopup() {
 	}
 	public String getText() {

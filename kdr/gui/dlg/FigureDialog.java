@@ -28,7 +28,7 @@ public class FigureDialog extends JDialog
 		static int PANEL_WIDTH = Y_FIELD_POS + FIELD_WIDTH + RIGHT_GAP;
 		static int SECOND_ROW = 2*FIRST_ROW + HEIGHT;
 		static int THIRD_ROW = 3*FIRST_ROW + 2*HEIGHT;
-		static int BOX_WIDTH = 180;
+		static int BOX_WIDTH = 160;
 
 		static int FOURTH_ROW = 4*FIRST_ROW + 3*HEIGHT;
 		static int RADIO_WIDTH = 80;
@@ -62,6 +62,7 @@ public class FigureDialog extends JDialog
 			this.view = view;
 			this.dialog = dialog;
 			setLayout(null);
+
 			JLabel x1Label = new JLabel("x1: ");
 			x1Label.setFont(new Font("Courier New",Font.BOLD,16));
 			x1Label.setBounds(X_LABEL_POS,FIRST_ROW,LABEL_WIDTH,HEIGHT);
