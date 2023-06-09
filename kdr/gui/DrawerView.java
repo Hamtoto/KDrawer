@@ -373,7 +373,8 @@ public class DrawerView extends JPanel
 	private JFileChooser imageChooser = null;
 	private FontDialog dlg = null;
 	private Font currentFont;
-	private static String FONT_FAMILY = "Arial";
+	private static String FONT_FAMILY = "Gulim";
+
 	private static int FONT_STYLE = Font.PLAIN;
 	private static int FONT_SIZE = 16;
 
