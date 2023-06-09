@@ -107,34 +107,24 @@ public class KSelector
 		}
 	}
 	public void draw(Graphics g) {
-		int minX = Math.min(x1,x2);
-		int minY = Math.min(y1,y2);
-		int width = Math.abs(x2-x1);
-		int height = Math.abs(y2-y1);
-
-		g.drawRect(minX,minY,width,height);
-	}
-	private void makeRegion() {
-		if (x1 > x2)
-		{
-			int tmp = x1;
-			x1 = x2;
-			x2 = tmp;
-		}
-		if (y1 > y2)
-		{
-			int tmp = y1;
-			y1 = y2;
-			y2 = tmp;
-		}
-
-		int xpoints[] = new int[4];
-		int ypoints[] = new int[4];
+		int[] xpoints = new int[4];
+		int[] ypoints = new int[4];
 
 		xpoints[0] = x1; ypoints[0] = y1;
-		xpoints[1] = x2; ypoints[1] = y1;
+		xpoints[1] = x1; ypoints[1] = y2;
 		xpoints[2] = x2; ypoints[2] = y2;
-		xpoints[3] = x1; ypoints[3] = y2;
+		xpoints[3] = x2; ypoints[3] = y1;
+
+		g.drawPolygon(xpoints,ypoints,4);
+	}
+	private void makeRegion() {
+		int[] xpoints = new int[4];
+		int[] ypoints= new int[4];
+
+		xpoints[0] = x1; ypoints[0] = y1;
+		xpoints[1] = x1; ypoints[1] = y2;
+		xpoints[2] = x2; ypoints[2] = y2;
+		xpoints[3] = x2; ypoints[3] = y1;
 
 		region = new Polygon(xpoints,ypoints,4);
 	}
