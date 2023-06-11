@@ -47,10 +47,23 @@ public class KRightTriangle extends KTwoPointFigure {
 	}
 
 	protected void drawDotEx(Graphics g) {
-
-		g.fillRect(x1 - DOTSIZE, y1 - DOTSIZE, DOTSIZE, DOTSIZE);
-		g.fillRect(x1, y2 - DOTSIZE, DOTSIZE, DOTSIZE);
-		g.fillRect(x2, y1, DOTSIZE, DOTSIZE);
+		if(x1 < x2 && y1 > y2){//1
+			g.fillRect(x1 - DOTSIZE, y1, DOTSIZE, DOTSIZE);
+			g.fillRect(x1 - DOTSIZE, y2 - DOTSIZE, DOTSIZE, DOTSIZE);
+			g.fillRect(x2, y1 , DOTSIZE, DOTSIZE);
+		}else if (x1 < x2 && y1 < y2) {//2
+			g.fillRect(x1 - DOTSIZE, y1 - DOTSIZE, DOTSIZE, DOTSIZE);
+			g.fillRect(x1 - DOTSIZE, y2, DOTSIZE, DOTSIZE);
+			g.fillRect(x2, y1 - DOTSIZE, DOTSIZE, DOTSIZE);
+		}else if (x1 > x2 && y1 < y2) {//3
+			g.fillRect(x1, y1 - DOTSIZE, DOTSIZE, DOTSIZE);
+			g.fillRect(x1, y2, DOTSIZE, DOTSIZE);
+			g.fillRect(x2 - DOTSIZE, y1 - DOTSIZE, DOTSIZE, DOTSIZE);
+		}else if (x1 > x2 && y1 > y2) {//4
+			g.fillRect(x1, y1, DOTSIZE, DOTSIZE);
+			g.fillRect(x1, y2 - DOTSIZE, DOTSIZE, DOTSIZE);
+			g.fillRect(x2 - DOTSIZE , y1, DOTSIZE, DOTSIZE);
+		}
 	}
 
 	public void makeRegion() {
