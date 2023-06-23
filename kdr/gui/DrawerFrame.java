@@ -274,8 +274,8 @@ public class DrawerFrame extends JFrame {
 
 					public void paintIcon(Component c, Graphics g, int x, int y) {
 						g.setColor(Color.black);
-						int xpoints[] = new int[7];
-						int ypoints[] = new int[7];
+						int[] xpoints = new int[7];
+						int[] ypoints = new int[7];
 
 						xpoints[0] = x+4;		ypoints[0] = y+2;
 						xpoints[1] = x+4;		ypoints[1] = y+FigureIcon.HEIGHT-2;
@@ -314,10 +314,11 @@ public class DrawerFrame extends JFrame {
 		colorToolBar.add(new ColorAction("Color", Color.yellow, canvas));
 		colorToolBar.add(Box.createGlue());
 
+
 		Box toolBarPanel = Box.createHorizontalBox();
+
 		networkToolBar = new JToolBar();
-		networkToolBar.add(realtimeButton =
-				new JCheckBox("Real Time"));
+		networkToolBar.add(realtimeButton = new JCheckBox("Real Time"));
 		realtimeButton.addActionListener((e) -> {
 			if (realtimeButton.isSelected()) {
 				talkDialog.sendString("RealTimeBegin");
@@ -585,7 +586,7 @@ public class DrawerFrame extends JFrame {
 		infoHelp.addActionListener((e) ->
 				{
 					JOptionPane.showMessageDialog(null,
-							"KDrawer\n" +
+							"KDrawer \n" +
 									"Project Email : k4kdrawer@gmail.com \n" +
 									"Department of Computer Science \n" +
 									"Busan University of Foreign Studies \n");
