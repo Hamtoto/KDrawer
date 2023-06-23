@@ -28,6 +28,24 @@ public class DrawerFrame extends JFrame {
 		}
 	}
 
+	static class FontBox extends JComboBox implements ActionListener {
+		DrawerView canvas;
+		static String[] size = {"100", "90", "80", "70", "60", "50", "40", "30", "20", "10"};
+
+		FontBox(DrawerView canvas) {
+			super(size);
+			this.canvas = canvas;
+			setMaximumSize(new Dimension(1500, 200));
+			addActionListener(this);
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			JComboBox box = (JComboBox) e.getSource();
+			String ratio = (String) box.getSelectedItem();
+			canvas.zoom(Integer.parseInt(ratio));
+		}
+	}
+
 	static class PrintableView implements Printable {
 		DrawerView canvas;
 		String fileName;
@@ -64,6 +82,7 @@ public class DrawerFrame extends JFrame {
 	DrawerView canvas;
 	JToolBar selectToolBar;
 	JToolBar colorToolBar;
+	JToolBar fontToolBar;
 	JToolBar networkToolBar;
 	JCheckBox realtimeButton;
 	JButton sendMeButton;
@@ -314,6 +333,11 @@ public class DrawerFrame extends JFrame {
 		colorToolBar.add(new ColorAction("Color", Color.yellow, canvas));
 		colorToolBar.add(Box.createGlue());
 
+		fontToolBar = new JToolBar();
+		fontToolBar.add(new FontBox(canvas));
+		fontToolBar.add(new FontBox(canvas));
+		fontToolBar.add(new FontBox(canvas));
+		fontToolBar.add(Box.createGlue());
 
 		Box toolBarPanel = Box.createHorizontalBox();
 
@@ -347,6 +371,7 @@ public class DrawerFrame extends JFrame {
 
 		toolBarPanel.add(selectToolBar);
 		toolBarPanel.add(colorToolBar);
+		toolBarPanel.add(fontToolBar);
 		toolBarPanel.add(networkToolBar);
 
 		container.add(toolBarPanel, BorderLayout.NORTH);
