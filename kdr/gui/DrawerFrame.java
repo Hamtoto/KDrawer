@@ -2,6 +2,7 @@ package kdr.gui;
 
 import kdr.gui.dlg.*;
 import kdr.net.*;
+import kdr.gui.dlg.FontDialog;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,21 +29,49 @@ public class DrawerFrame extends JFrame {
 		}
 	}
 
-	static class FontBox extends JComboBox implements ActionListener {
+	static class FontFamilyBox extends JComboBox implements ActionListener {
 		DrawerView canvas;
-		static String[] size = {"100", "90", "80", "70", "60", "50", "40", "30", "20", "10"};
-
-		FontBox(DrawerView canvas) {
-			super(size);
+		static String[] frameFontList = FontDialog.getFontList();
+		FontFamilyBox(DrawerView canvas) {
+			super(frameFontList);
 			this.canvas = canvas;
-			setMaximumSize(new Dimension(1500, 200));
 			addActionListener(this);
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			JComboBox box = (JComboBox) e.getSource();
-			String ratio = (String) box.getSelectedItem();
-			canvas.zoom(Integer.parseInt(ratio));
+			String selectedFontName = (String) getSelectedItem();
+			Font selectedFont = new Font(selectedFontName, Font.PLAIN, 12); // 폰트 스타일 조정영역
+			canvas.setFont(selectedFont); // 폰트 적용시킬 메소드 호출
+		}
+	}
+
+	static class FontStyleBox extends JComboBox implements ActionListener {
+		DrawerView canvas;
+		static String[] style = {"Regular", "Bold", "Italic", "Bold Italic"};
+		FontStyleBox(DrawerView canvas) {
+			super(style);
+			this.canvas = canvas;
+			addActionListener(this);
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			//Font selectedFont = new Font(selectedFontName, Font.PLAIN, 12); // 폰트 스타일 조정영역
+			//canvas.setFont(selectedFont); // 폰트 적용시킬 메소드 호출
+		}
+	}
+
+	static class FontSizeBox extends JComboBox implements ActionListener {
+		DrawerView canvas;
+		static String[] frameFontSize = FontDialog.getFontSize();
+		FontSizeBox(DrawerView canvas) {
+			super(frameFontSize);
+			this.canvas = canvas;
+			addActionListener(this);
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			//Font selectedFont = new Font(selectedFontName, Font.PLAIN, 12); // 폰트 스타일 조정영역
+			//canvas.setFont(selectedFont); // 폰트 적용시킬 메소드 호출
 		}
 	}
 
@@ -333,10 +362,11 @@ public class DrawerFrame extends JFrame {
 		colorToolBar.add(new ColorAction("Color", Color.yellow, canvas));
 		colorToolBar.add(Box.createGlue());
 
+		//Font toolbar
 		fontToolBar = new JToolBar();
-		fontToolBar.add(new FontBox(canvas));
-		fontToolBar.add(new FontBox(canvas));
-		fontToolBar.add(new FontBox(canvas));
+		fontToolBar.add(new FontFamilyBox(canvas));
+		fontToolBar.add(new FontStyleBox(canvas));
+		fontToolBar.add(new FontSizeBox(canvas));
 		fontToolBar.add(Box.createGlue());
 
 		Box toolBarPanel = Box.createHorizontalBox();

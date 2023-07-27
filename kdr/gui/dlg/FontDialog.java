@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FontDialog extends JDialog {
-	static class DialogPanel extends JPanel 
+	class DialogPanel extends JPanel
 				implements ActionListener, ListSelectionListener
 	{
 		JDialog dialog;
@@ -27,7 +27,7 @@ public class FontDialog extends JDialog {
 		public Font font = null;
 		String[] fontstyleArray,fontSizeArray;
 		public boolean okFlag = false;
-		
+
 		private JPanel makeFontPanel(DrawerView view) {
 			fontPanel = new JPanel(new BorderLayout());
 			topPanel = new JPanel(new FlowLayout(FlowLayout.CENTER)); 
@@ -40,12 +40,8 @@ public class FontDialog extends JDialog {
 			fontLabel = new JLabel("Fonts: ");
 			fontFamilyPanel.add(fontLabel, BorderLayout.NORTH);
 
-			Font[] fonts =  ge.getAllFonts();
-			String[] fontList = new String[fonts.length];
-			for (int i = 0; i < fonts.length; i++) {
-				fontList[i] = fonts[i].getFontName();
-			}
-			
+			String[] fontList = getFontList();
+
 			fontNameList = new JList<>(fontList); 
 			fontNameList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			fontNameList.setSelectedIndex(3);
@@ -74,17 +70,14 @@ public class FontDialog extends JDialog {
 
 			//SizePanel
 			fontSizePanel = new JPanel();
-			fontSizePanel.setLayout(new BorderLayout()); 
+			fontSizePanel.setLayout(new BorderLayout());
+
+			String[] fontSize = getFontSize();
 
 			sizeLabel = new JLabel("Sizes: ");
-			fontSizePanel.add(sizeLabel, BorderLayout.NORTH); 
+			fontSizePanel.add(sizeLabel, BorderLayout.NORTH);
 
-			String[] fontSizeArray = new String[29];
-			for (int i = 6, j = 0; i <= 62; i += 2, j++){
-				fontSizeArray[j]=String.valueOf(i);
-			}
-
-			fontSizeList = new JList<>(fontSizeArray);
+			fontSizeList = new JList<>(fontSize);
 			fontSizeList.setSelectionMode(0);
 			fontSizeList.setSelectedIndex(16);
 			fontSizeList.addListSelectionListener(this);
@@ -155,6 +148,24 @@ public class FontDialog extends JDialog {
         if (panel.okFlag == false) return null;
         return panel.font;
     }
+
+	public static String[] getFontList() {
+		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		Font[] fonts = ge.getAllFonts();
+		String[] fontList = new String[fonts.length];
+		for (int i = 0; i < fonts.length; i++) {
+			fontList[i] = fonts[i].getFontName();
+		}
+		return fontList;
+	}
+
+	public static  String[] getFontSize(){
+		String[] fontSizeArray = new String[29];
+		for (int i = 6, j = 0; i <= 62; i += 2, j++){
+			fontSizeArray[j]=String.valueOf(i);
+		}
+		return fontSizeArray;
+	}
     public FontDialog(String title, DrawerView view) {
         super((JFrame)null,title);
         setModal(true);
