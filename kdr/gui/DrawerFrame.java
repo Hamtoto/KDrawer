@@ -74,6 +74,7 @@ public class DrawerFrame extends JFrame {
 	FontDialog textDialog = null;
 	TreeDialog treeDialog = null;
 	KTalkDialog talkDialog = null;
+	InfoDialog infoDialog = null;
 
 	String fileName = "noname.jdr";
 
@@ -584,11 +585,11 @@ public class DrawerFrame extends JFrame {
 		helpMenu.add(infoHelp);
 		infoHelp.addActionListener((e) ->
 				{
-					JOptionPane.showMessageDialog(null,
-							"KDrawer\n" +
-									"Project Email : k4kdrawer@gmail.com \n" +
-									"Department of Computer Science \n" +
-									"Busan University of Foreign Studies \n");
+					if (infoDialog == null) {
+						infoDialog = new InfoDialog("Info",canvas);
+						infoDialog.setModal(true);
+					}
+					infoDialog.setVisible(true);
 				}
 		);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
