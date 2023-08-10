@@ -822,7 +822,6 @@ public class DrawerView extends JPanel
     }
 
     public void mouseClicked(MouseEvent e) {
-
     }
 
     public void mousePressed(MouseEvent e) {

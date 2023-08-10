@@ -120,8 +120,7 @@ public class FontDialog extends JDialog {
 
 			//Sample, Button Panel
 			JPanel bottomPanel = makeBottomPanel();
-			add(bottomPanel, BorderLayout.SOUTH); 
-			
+			add(bottomPanel, BorderLayout.SOUTH);
 		}
 
 		public void valueChanged(ListSelectionEvent e) {
