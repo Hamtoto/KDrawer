@@ -198,8 +198,7 @@ public class DrawerView extends JPanel
     public static String[] koreanFigureType
             = {"점", "사각형", "선분", "여러 선", "곡선", "화살표", "원",
             "삼각형", "직각삼각형", "마름모", "별", "낙서", "텍스트", "그림", "지우개"};
-    public static ArrayList<String> figureTypeNames
-            = new ArrayList<String>();
+    public static ArrayList<String> figureTypeNames = new ArrayList<String>();
     public static HashMap figureTypes = new HashMap<String, String>();
 
     public static StringMap KRLabels = new StringMap();
@@ -783,7 +782,6 @@ public class DrawerView extends JPanel
     }
 
     public void removeGrabListener(MouseMotionListener l) {
-        // MouseMotionListener
         MouseMotionListener listener[] = getMouseMotionListeners();
         for (int i = 0; i < listener.length; i++) {
             removeMouseMotionListener(listener[i]);
@@ -796,7 +794,6 @@ public class DrawerView extends JPanel
         actionMode = NOTHING;
         if (selectedFigure == null) return;
         selectedFigure = null;
-        //setWhatToDraw(ID_MOUSE);
     }
 
     public void stopCurveDrawing() {
@@ -807,7 +804,6 @@ public class DrawerView extends JPanel
         selectedFigure.draw(getGraphics());
         addFigure(selectedFigure);
         selectedFigure = null;
-        //setWhatToDraw(ID_MOUSE);
     }
 
     public void stopLinesDrawing() {
@@ -823,11 +819,9 @@ public class DrawerView extends JPanel
             addFigure(selectedFigure);
         }
         selectedFigure = null;
-        //setWhatToDraw(ID_MOUSE);
     }
 
     public void mouseClicked(MouseEvent e) {
-
     }
 
     public void mousePressed(MouseEvent e) {
@@ -960,6 +954,7 @@ public class DrawerView extends JPanel
         actionMode = DRAWING;
     }
 
+    //font 수정 파트
     public void changeFontForText() {
         dlg.setVisible(true);
         Font font = dlg.getFont();

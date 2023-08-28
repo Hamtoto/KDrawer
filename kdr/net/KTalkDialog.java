@@ -12,6 +12,7 @@ public class KTalkDialog extends JDialog
 	MainPanel mainWnd;
     public KTalkDialog(DrawerFrame owner) {
         super(owner, "KTalk");
+		setLocation(200,300);
         setSize(WIDTH,HEIGHT);
         setResizable(false);
         Container contentPane = getContentPane();

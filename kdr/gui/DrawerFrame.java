@@ -2,14 +2,45 @@ package kdr.gui;
 
 import kdr.gui.dlg.*;
 import kdr.net.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.filechooser.*;
 import java.awt.print.*;
+import java.util.LinkedList;
 
 public class DrawerFrame extends JFrame {
+
+	public static final int FONT_LIST = 1;
+	public static final int FONT_STYLE = 2;
+	public static final int FONT_SIZE = 3;
+
+
+	public static String[] getFontList() {
+		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		Font[] fonts = ge.getAllFonts();
+		LinkedList<String> fontLinkedList = new LinkedList<>();
+
+        for (Font font : fonts) {
+            if (!font.getFontName().contains("Bold")
+                    && !font.getFontName().contains("bold")
+                    && !font.getFontName().contains("Italic")
+                    && !font.getFontName().contains("italic")
+                    && !font.getFontName().contains("Dialog")) {
+                fontLinkedList.add(font.getFontName());
+            }
+        }
+		return fontLinkedList.toArray(new String[0]);
+	}
+
+	public static  String[] getFontSize(){
+		String[] fontSizeArray = new String[29];
+		for (int i = 6, j = 0; i <= 62; i += 2, j++){
+			fontSizeArray[j]=String.valueOf(i);
+		}
+		return fontSizeArray;
+	}
+
 	static class ZoomBox extends JComboBox implements ActionListener {
 		DrawerView canvas;
 		static String[] size = {"100", "90", "80", "70", "60", "50", "40", "30", "20", "10"};
@@ -27,6 +58,33 @@ public class DrawerFrame extends JFrame {
 			canvas.zoom(Integer.parseInt(ratio));
 		}
 	}
+
+	static class FontComboBox extends JComboBox implements ActionListener {
+		DrawerView canvas;
+		static String[] fontList = getFontList();
+		static String[] style = {"Regular", "Bold", "Italic", "Bold Italic"};
+		static String[] fontSize = getFontSize();
+
+		FontComboBox(DrawerView canvas, int n) {
+			super(getComboBoxItems(n));
+			this.canvas = canvas;
+			addActionListener(this);
+		}
+
+		private static Object[] getComboBoxItems(int n) {
+			if (n == FONT_LIST) {
+				return fontList;
+			} else if (n == FONT_STYLE) {
+				return style;
+			} else{
+				return fontSize;
+			}
+		}
+
+		public void actionPerformed(ActionEvent e) {
+		}
+	}
+
 
 	static class PrintableView implements Printable {
 		DrawerView canvas;
@@ -64,6 +122,7 @@ public class DrawerFrame extends JFrame {
 	DrawerView canvas;
 	JToolBar selectToolBar;
 	JToolBar colorToolBar;
+	JToolBar fontToolBar;
 	JToolBar networkToolBar;
 	JCheckBox realtimeButton;
 	JButton sendMeButton;
@@ -71,7 +130,6 @@ public class DrawerFrame extends JFrame {
 	StatusBar statusBar;
 	FigureDialog dialog = null;
 	TableDialog tableDialog = null;
-	FontDialog textDialog = null;
 	TreeDialog treeDialog = null;
 	KTalkDialog talkDialog = null;
 	InfoDialog infoDialog = null;
@@ -154,7 +212,7 @@ public class DrawerFrame extends JFrame {
 		int value = chooser.showSaveDialog(null);
 		if (value != JFileChooser.APPROVE_OPTION) return;
 		fileName = chooser.getSelectedFile().getPath();
-		if (fileName.endsWith(".jdr") == false) {
+		if (!fileName.endsWith(".jdr")) {
 			fileName = fileName + ".jdr";
 		}
 		setTitle("KDrawer - [" + fileName + "]");
@@ -275,18 +333,18 @@ public class DrawerFrame extends JFrame {
 
 					public void paintIcon(Component c, Graphics g, int x, int y) {
 						g.setColor(Color.black);
-						int xpoints[] = new int[7];
-						int ypoints[] = new int[7];
+						int[] x_points = new int[7];
+						int[] y_points = new int[7];
 
-						xpoints[0] = x+4;		ypoints[0] = y+2;
-						xpoints[1] = x+4;		ypoints[1] = y+FigureIcon.HEIGHT-2;
-						xpoints[2] = x+7;		ypoints[2] = y+FigureIcon.HEIGHT-5;
-						xpoints[3] = x+9;		ypoints[3] = y+FigureIcon.HEIGHT-1;
-						xpoints[4] = x+11;		ypoints[4] = y+FigureIcon.HEIGHT-2;
-						xpoints[5] = x+10;		ypoints[5] = y+FigureIcon.HEIGHT-5;
-						xpoints[6] = x+13;		ypoints[6] = y+FigureIcon.HEIGHT-6;
+						x_points[0] = x+4;		y_points[0] = y+2;
+						x_points[1] = x+4;		y_points[1] = y+FigureIcon.HEIGHT-2;
+						x_points[2] = x+7;		y_points[2] = y+FigureIcon.HEIGHT-5;
+						x_points[3] = x+9;		y_points[3] = y+FigureIcon.HEIGHT-1;
+						x_points[4] = x+11;		y_points[4] = y+FigureIcon.HEIGHT-2;
+						x_points[5] = x+10;		y_points[5] = y+FigureIcon.HEIGHT-5;
+						x_points[6] = x+13;		y_points[6] = y+FigureIcon.HEIGHT-6;
 
-						g.drawPolygon(xpoints, ypoints, 7);
+						g.drawPolygon(x_points, y_points, 7);
 					}
 				}
 				, canvas));
@@ -315,10 +373,17 @@ public class DrawerFrame extends JFrame {
 		colorToolBar.add(new ColorAction("Color", Color.yellow, canvas));
 		colorToolBar.add(Box.createGlue());
 
+		//Font toolbar
+		fontToolBar = new JToolBar();
+		fontToolBar.add(new FontComboBox(canvas, FONT_LIST));
+		fontToolBar.add(new FontComboBox(canvas, FONT_STYLE));
+		fontToolBar.add(new FontComboBox(canvas, FONT_SIZE));
+		fontToolBar.add(Box.createGlue());
+
 		Box toolBarPanel = Box.createHorizontalBox();
+
 		networkToolBar = new JToolBar();
-		networkToolBar.add(realtimeButton =
-				new JCheckBox("Real Time"));
+		networkToolBar.add(realtimeButton = new JCheckBox("Real Time"));
 		realtimeButton.addActionListener((e) -> {
 			if (realtimeButton.isSelected()) {
 				talkDialog.sendString("RealTimeBegin");
@@ -347,6 +412,7 @@ public class DrawerFrame extends JFrame {
 
 		toolBarPanel.add(selectToolBar);
 		toolBarPanel.add(colorToolBar);
+		toolBarPanel.add(fontToolBar);
 		toolBarPanel.add(networkToolBar);
 
 		container.add(toolBarPanel, BorderLayout.NORTH);
@@ -371,7 +437,7 @@ public class DrawerFrame extends JFrame {
 		fileMenu.add(newFile);
 		newFile.setMnemonic('N');
 		newFile.setBackground(Color.white);
-		newFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("newFile.png")));
+		newFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("./image/newFile.png")));
 		newFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
 		newFile.addActionListener((e) -> canvas.doFileNew());
 
@@ -380,7 +446,7 @@ public class DrawerFrame extends JFrame {
 		fileMenu.add(openFile);
 		openFile.setMnemonic('O');
 		openFile.setBackground(Color.white);
-		openFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("openFile.png")));
+		openFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("./image/openFile.png")));
 		openFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
 		openFile.addActionListener((e) -> doOpen());
 
@@ -389,7 +455,7 @@ public class DrawerFrame extends JFrame {
 		fileMenu.add(saveFile);
 		saveFile.setMnemonic('S');
 		saveFile.setBackground(Color.white);
-		saveFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("saveFile.png")));
+		saveFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("./image/saveFile.png")));
 		saveFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
 		saveFile.addActionListener((e) -> canvas.doSave(fileName));
 
@@ -398,7 +464,7 @@ public class DrawerFrame extends JFrame {
 		fileMenu.add(saveAsFile);
 		saveAsFile.setMnemonic('A');
 		saveAsFile.setBackground(Color.white);
-		saveAsFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("saveAsFile.png")));
+		saveAsFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("./image/saveAsFile.png")));
 		saveAsFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
 		saveAsFile.addActionListener((e) -> doSaveAs());
 
@@ -409,7 +475,7 @@ public class DrawerFrame extends JFrame {
 		fileMenu.add(printFile);
 		printFile.setMnemonic('P');
 		printFile.setBackground(Color.white);
-		printFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("printFile.png")));
+		printFile.setIcon(new ImageIcon(DrawerFrame.class.getResource("./image/printFile.png")));
 		printFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
 		printFile.addActionListener((e) -> doPrint());
 
@@ -420,13 +486,9 @@ public class DrawerFrame extends JFrame {
 		fileMenu.add(exit);
 		exit.setMnemonic('X');
 		exit.setBackground(Color.white);
-		exit.setIcon(new ImageIcon(DrawerFrame.class.getResource("exit.png")));
+		exit.setIcon(new ImageIcon(DrawerFrame.class.getResource("./image/exit.png")));
 		exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_MASK));
-		exit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-			}
-		});
+		exit.addActionListener(e -> setVisible(false));
 
 		JMenu figureMenu = new JMenu(DrawerView.Labels.get("Figure (G)"));
 		figureMenu.setMnemonic('G');
@@ -481,9 +543,7 @@ public class DrawerFrame extends JFrame {
 		JMenuItem talkItem = new JMenuItem(DrawerView.Labels.get("Talk (K)"));
 		talkItem.setMnemonic('K');
 		toolMenu.add(talkItem);
-		talkItem.addActionListener((e) -> {
-			talkDialog.setVisible(true);
-		});
+		talkItem.addActionListener((e) -> talkDialog.setVisible(true));
 
 		JMenuItem modalTool = new JMenuItem(DrawerView.Labels.get("Figure Dialog (D)"));
 		modalTool.setMnemonic('D');
