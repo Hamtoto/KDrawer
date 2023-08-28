@@ -11,7 +11,6 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
 
 public class FontDialog extends JDialog {
 	static class DialogPanel extends JPanel
@@ -26,7 +25,7 @@ public class FontDialog extends JDialog {
 		String[] fontStyleArray;
 		public boolean okFlag = false;
 
-		private JPanel makeFontPanel(DrawerView view) {
+		private JPanel makeFontPanel() {
 			JPanel fontPanel = new JPanel(new BorderLayout());
 			JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 			
@@ -112,7 +111,7 @@ public class FontDialog extends JDialog {
 			setLayout(new BorderLayout());
 
 			//Font info Panel
-			JPanel fontPanel = makeFontPanel(view);
+			JPanel fontPanel = makeFontPanel();
 			add(fontPanel, BorderLayout.CENTER);
 
 			//Sample, Button Panel
@@ -123,7 +122,7 @@ public class FontDialog extends JDialog {
 		public void valueChanged(ListSelectionEvent e) {
 			font = new Font(fontNameList.getSelectedValue(),
 							fontStyleList.getSelectedIndex(),
-							Integer.valueOf(fontSizeList.getSelectedValue())
+							Integer.parseInt(fontSizeList.getSelectedValue())
 						);
 			sampleLabel.setFont(font);
 		}
@@ -141,7 +140,7 @@ public class FontDialog extends JDialog {
     DialogPanel panel;
 
     public Font getFont() {
-        if (panel.okFlag == false) return null;
+        if (!panel.okFlag) return null;
         return panel.font;
     }
 

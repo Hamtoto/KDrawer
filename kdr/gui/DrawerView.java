@@ -954,6 +954,7 @@ public class DrawerView extends JPanel
         actionMode = DRAWING;
     }
 
+    //font 수정 파트
     public void changeFontForText() {
         dlg.setVisible(true);
         Font font = dlg.getFont();

@@ -2,8 +2,6 @@ package kdr.gui;
 
 import kdr.gui.dlg.*;
 import kdr.net.*;
-import kdr.gui.dlg.FontDialog;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -17,7 +15,6 @@ public class DrawerFrame extends JFrame {
 	public static final int FONT_STYLE = 2;
 	public static final int FONT_SIZE = 3;
 
-	private GraphicsEnvironment ge = null;
 
 	public static String[] getFontList() {
 		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -133,7 +130,6 @@ public class DrawerFrame extends JFrame {
 	StatusBar statusBar;
 	FigureDialog dialog = null;
 	TableDialog tableDialog = null;
-	FontDialog textDialog = null;
 	TreeDialog treeDialog = null;
 	KTalkDialog talkDialog = null;
 
@@ -215,7 +211,7 @@ public class DrawerFrame extends JFrame {
 		int value = chooser.showSaveDialog(null);
 		if (value != JFileChooser.APPROVE_OPTION) return;
 		fileName = chooser.getSelectedFile().getPath();
-		if (fileName.endsWith(".jdr") == false) {
+		if (!fileName.endsWith(".jdr")) {
 			fileName = fileName + ".jdr";
 		}
 		setTitle("KDrawer - [" + fileName + "]");
@@ -336,18 +332,18 @@ public class DrawerFrame extends JFrame {
 
 					public void paintIcon(Component c, Graphics g, int x, int y) {
 						g.setColor(Color.black);
-						int[] xpoints = new int[7];
-						int[] ypoints = new int[7];
+						int[] x_points = new int[7];
+						int[] y_points = new int[7];
 
-						xpoints[0] = x+4;		ypoints[0] = y+2;
-						xpoints[1] = x+4;		ypoints[1] = y+FigureIcon.HEIGHT-2;
-						xpoints[2] = x+7;		ypoints[2] = y+FigureIcon.HEIGHT-5;
-						xpoints[3] = x+9;		ypoints[3] = y+FigureIcon.HEIGHT-1;
-						xpoints[4] = x+11;		ypoints[4] = y+FigureIcon.HEIGHT-2;
-						xpoints[5] = x+10;		ypoints[5] = y+FigureIcon.HEIGHT-5;
-						xpoints[6] = x+13;		ypoints[6] = y+FigureIcon.HEIGHT-6;
+						x_points[0] = x+4;		y_points[0] = y+2;
+						x_points[1] = x+4;		y_points[1] = y+FigureIcon.HEIGHT-2;
+						x_points[2] = x+7;		y_points[2] = y+FigureIcon.HEIGHT-5;
+						x_points[3] = x+9;		y_points[3] = y+FigureIcon.HEIGHT-1;
+						x_points[4] = x+11;		y_points[4] = y+FigureIcon.HEIGHT-2;
+						x_points[5] = x+10;		y_points[5] = y+FigureIcon.HEIGHT-5;
+						x_points[6] = x+13;		y_points[6] = y+FigureIcon.HEIGHT-6;
 
-						g.drawPolygon(xpoints, ypoints, 7);
+						g.drawPolygon(x_points, y_points, 7);
 					}
 				}
 				, canvas));
@@ -491,11 +487,7 @@ public class DrawerFrame extends JFrame {
 		exit.setBackground(Color.white);
 		exit.setIcon(new ImageIcon(DrawerFrame.class.getResource("./image/exit.png")));
 		exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_MASK));
-		exit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-			}
-		});
+		exit.addActionListener(e -> setVisible(false));
 
 		JMenu figureMenu = new JMenu(DrawerView.Labels.get("Figure (G)"));
 		figureMenu.setMnemonic('G');
@@ -550,9 +542,7 @@ public class DrawerFrame extends JFrame {
 		JMenuItem talkItem = new JMenuItem(DrawerView.Labels.get("Talk (K)"));
 		talkItem.setMnemonic('K');
 		toolMenu.add(talkItem);
-		talkItem.addActionListener((e) -> {
-			talkDialog.setVisible(true);
-		});
+		talkItem.addActionListener((e) -> talkDialog.setVisible(true));
 
 		JMenuItem modalTool = new JMenuItem(DrawerView.Labels.get("Figure Dialog (D)"));
 		modalTool.setMnemonic('D');
