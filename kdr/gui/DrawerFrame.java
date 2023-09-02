@@ -5,17 +5,19 @@ import kdr.net.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.event.ListSelectionEvent;
 import javax.swing.filechooser.*;
 import java.awt.print.*;
 import java.util.LinkedList;
 
 public class DrawerFrame extends JFrame {
 
-	public static final int FONT_LIST = 1;
+	public static final int FONT_NAME = 1;
 	public static final int FONT_STYLE = 2;
 	public static final int FONT_SIZE = 3;
 
 
+	//Load and filter font list
 	public static String[] getFontList() {
 		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		Font[] fonts = ge.getAllFonts();
@@ -41,6 +43,47 @@ public class DrawerFrame extends JFrame {
 		return fontSizeArray;
 	}
 
+	static class FontComboBox extends JComboBox implements ActionListener {
+		DrawerView canvas;
+		static String[] fontList = getFontList();
+		static String[] style = {"Regular", "Bold", "Italic", "Bold Italic"};
+		static String[] fontSize = getFontSize();
+
+		FontComboBox(DrawerView canvas, int n) {
+			super(getComboBoxItems(n));
+			this.canvas = canvas;
+			setName(Integer.toString(n));
+			addActionListener(this);
+		}
+
+		private static Object[] getComboBoxItems(int n) {
+			if (n == FONT_NAME) {
+				return fontList;
+			} else if (n == FONT_STYLE) {
+				return style;
+			} else {
+				return fontSize;
+			}
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			JComboBox box = (JComboBox) e.getSource();
+			int comboBoxNumber = Integer.parseInt(box.getName());
+			Font currentFont = canvas.getCurrentFont();
+			Font newfont = null;
+
+			if (comboBoxNumber == FONT_NAME) {
+				newfont = new Font((String) box.getSelectedItem(), currentFont.getStyle(), currentFont.getSize());
+			} else if (comboBoxNumber == FONT_STYLE) {
+				newfont = new Font(currentFont.getFontName(), box.getSelectedIndex(), currentFont.getSize());
+			} else if (comboBoxNumber == FONT_SIZE) {
+				int newSize = Integer.parseInt((String) box.getSelectedItem());
+				newfont = new Font(currentFont.getFontName(), currentFont.getStyle(), newSize);
+			}
+			canvas.changeFontToolBar(newfont);
+		}
+	}
+
 	static class ZoomBox extends JComboBox implements ActionListener {
 		DrawerView canvas;
 		static String[] size = {"100", "90", "80", "70", "60", "50", "40", "30", "20", "10"};
@@ -58,33 +101,6 @@ public class DrawerFrame extends JFrame {
 			canvas.zoom(Integer.parseInt(ratio));
 		}
 	}
-
-	static class FontComboBox extends JComboBox implements ActionListener {
-		DrawerView canvas;
-		static String[] fontList = getFontList();
-		static String[] style = {"Regular", "Bold", "Italic", "Bold Italic"};
-		static String[] fontSize = getFontSize();
-
-		FontComboBox(DrawerView canvas, int n) {
-			super(getComboBoxItems(n));
-			this.canvas = canvas;
-			addActionListener(this);
-		}
-
-		private static Object[] getComboBoxItems(int n) {
-			if (n == FONT_LIST) {
-				return fontList;
-			} else if (n == FONT_STYLE) {
-				return style;
-			} else{
-				return fontSize;
-			}
-		}
-
-		public void actionPerformed(ActionEvent e) {
-		}
-	}
-
 
 	static class PrintableView implements Printable {
 		DrawerView canvas;
@@ -375,7 +391,7 @@ public class DrawerFrame extends JFrame {
 
 		//Font toolbar
 		fontToolBar = new JToolBar();
-		fontToolBar.add(new FontComboBox(canvas, FONT_LIST));
+		fontToolBar.add(new FontComboBox(canvas, FONT_NAME));
 		fontToolBar.add(new FontComboBox(canvas, FONT_STYLE));
 		fontToolBar.add(new FontComboBox(canvas, FONT_SIZE));
 		fontToolBar.add(Box.createGlue());

@@ -969,6 +969,15 @@ public class DrawerView extends JPanel
         setModified();
     }
 
+    public Font getCurrentFont() {
+        return currentFont;
+    }
+
+    public void changeFontToolBar(Font f) {
+        currentFont = f;
+        repaint();
+    }
+
     private Image getImageFromImageChooser() {
         Image newImage = null;
         int returnVal = imageChooser.showOpenDialog(null);
