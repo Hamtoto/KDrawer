@@ -646,7 +646,7 @@ public class DrawerFrame extends JFrame {
 		infoHelp.addActionListener((e) ->
 				{
 					if (infoDialog == null) {
-						infoDialog = new InfoDialog("Info",canvas);
+						infoDialog = new InfoDialog("Info");
 						infoDialog.setModal(true);
 					}
 					infoDialog.setVisible(true);
