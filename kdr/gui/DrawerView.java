@@ -198,8 +198,7 @@ public class DrawerView extends JPanel
     public static String[] koreanFigureType
             = {"점", "사각형", "선분", "여러 선", "곡선", "화살표", "원",
             "삼각형", "직각삼각형", "마름모", "별", "낙서", "텍스트", "그림", "지우개"};
-    public static ArrayList<String> figureTypeNames
-            = new ArrayList<String>();
+    public static ArrayList<String> figureTypeNames = new ArrayList<String>();
     public static HashMap figureTypes = new HashMap<String, String>();
 
     public static StringMap KRLabels = new StringMap();
@@ -823,7 +822,6 @@ public class DrawerView extends JPanel
     }
 
     public void mouseClicked(MouseEvent e) {
-
     }
 
     public void mousePressed(MouseEvent e) {
@@ -956,6 +954,7 @@ public class DrawerView extends JPanel
         actionMode = DRAWING;
     }
 
+    //font 수정 파트
     public void changeFontForText() {
         dlg.setVisible(true);
         Font font = dlg.getFont();
@@ -968,6 +967,15 @@ public class DrawerView extends JPanel
         text.makeRegion();
         repaint();
         setModified();
+    }
+
+    public Font getCurrentFont() {
+        return currentFont;
+    }
+
+    public void changeFontToolBar(Font f) {
+        currentFont = f;
+        repaint();
     }
 
     private Image getImageFromImageChooser() {
