@@ -8,12 +8,8 @@ public class InfoDialog extends JDialog {
     private int frameheight = 300;
     private InfoPanel infoPanel = new InfoPanel();
 
-    public InfoDialog(String title) {
-        setTitle(title);
-        setLocation(200, 300);
-        setSize(frameWidth, frameheight);
-        setContentPane(infoPanel);
-    }
+    private final int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
+    private final int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
 
     public void InfoDialogFalseVisible() {
         this.setVisible(false);
@@ -53,4 +49,13 @@ public class InfoDialog extends JDialog {
             okBut.addActionListener(e -> InfoDialogFalseVisible());
         }
     }
+    public InfoDialog(String title) {
+        super((JFrame) null, title);
+        setModal(true);
+        setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameheight / 2);
+        setResizable(false);
+        setSize(frameWidth, frameheight);
+        setContentPane(infoPanel);
+    }
+
 }
