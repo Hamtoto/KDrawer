@@ -15,7 +15,7 @@ public class InfoDialog extends JDialog {
     public class InfoPanel extends JPanel {
         private JLabel[] labels = new JLabel[4];
         private JButton okBut = new JButton("확인");
-        //private ImageIcon logoIcon = new ImageIcon("logo.png");
+        //private ImageIcon logoIcon = new ImageIcon(".../image/logo.png");
         //private Image logoImage = logoIcon.getImage();
 
         public void paintComponent(Graphics g) {
