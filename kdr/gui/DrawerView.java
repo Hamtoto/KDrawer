@@ -781,7 +781,7 @@ public class DrawerView extends JPanel
     }
 
     public void removeGrabListener(MouseMotionListener l) {
-        MouseMotionListener listener[] = getMouseMotionListeners();
+        MouseMotionListener[] listener = getMouseMotionListeners();
         for (int i = 0; i < listener.length; i++) {
             removeMouseMotionListener(listener[i]);
         }
@@ -812,7 +812,7 @@ public class DrawerView extends JPanel
         if (selectedFigure == null) return;
         if (!(selectedFigure instanceof KLines)) return;
         KLines lines = (KLines) selectedFigure;
-        if (lines.constructPointArray() == true) {
+        if (lines.constructPointArray()) {
             // line segment
             selectedFigure.draw(getGraphics());
             addFigure(selectedFigure);
@@ -871,8 +871,8 @@ public class DrawerView extends JPanel
             actionMode = MOVING;
             currentX = x;
             currentY = y;
-            if (selectedFigure.getDotFlag() == true &&
-                    selector.contains(selectedFigure) == true) {
+            if (selectedFigure.getDotFlag() &&
+                    selector.contains(selectedFigure)) {
                 selector.removeFrom(figures);
             } else {
                 figures.remove(selectedFigure);
@@ -1011,7 +1011,7 @@ public class DrawerView extends JPanel
             selectedFigure = find(x, y);
             if (selectedFigure == null) {
                 mainPopup.popup(this, x, y);
-            } else if (selectedFigure.getDotFlag() == false) {
+            } else if (!selectedFigure.getDotFlag()) {
                 selectedFigure.popup(this, x, y);
             } else if (selector.contains(selectedFigure)) {
                 groupPopup.popup(this, x, y);
@@ -1094,17 +1094,15 @@ public class DrawerView extends JPanel
             }
         }
         // MOVING
-        if (selectedFigure.getDotFlag() == true &&
-                selector.contains(selectedFigure) == true) {
+        if (selectedFigure.getDotFlag() &&
+                selector.contains(selectedFigure)) {
             selector.drawAndAddFiguresInBag(g);
-            selectedFigure = null;
-            actionMode = NOTHING;
         } else {
             selectedFigure.draw(g);
             addFigure(selectedFigure);
-            selectedFigure = null;
-            actionMode = NOTHING;
         }
+        selectedFigure = null;
+        actionMode = NOTHING;
     }
 
     public void mouseEntered(MouseEvent e) {
@@ -1145,8 +1143,8 @@ public class DrawerView extends JPanel
         if (actionMode == DRAWING) {
             selectedFigure.drawing(g, x, y);
         } else if (actionMode == MOVING) {
-            if (selectedFigure.getDotFlag() == true &&
-                    selector.contains(selectedFigure) == true) {
+            if (selectedFigure.getDotFlag() &&
+                    selector.contains(selectedFigure)) {
                 selector.moveFiguresInBag(g, x - currentX, y - currentY);
             } else {
                 selectedFigure.move(g, x - currentX, y - currentY);
@@ -1212,12 +1210,12 @@ public class DrawerView extends JPanel
     }
 
     public void copyFigure() {
-        if (selectedFigure == null && selector.isEmpty() == false) {
+        if (selectedFigure == null && !selector.isEmpty()) {
             selector.copyFiguresInBag();
         }
         if (selectedFigure == null) return;
-        if (selectedFigure.getDotFlag() == true &&
-                selector.contains(selectedFigure) == true) {
+        if (selectedFigure.getDotFlag() &&
+                selector.contains(selectedFigure)) {
             selector.copyFiguresInBag();
         } else {
             KFigure newFigure = selectedFigure.copyAndMove();
@@ -1227,14 +1225,14 @@ public class DrawerView extends JPanel
     }
 
     public void deleteFigure() {
-        if (selectedFigure == null && selector.isEmpty() == false) {
+        if (selectedFigure == null && !selector.isEmpty()) {
             selector.removeFiguresInBag();
             repaint();
             setModified();
         }
         if (selectedFigure == null) return;
-        if (selectedFigure.getDotFlag() == true &&
-                selector.contains(selectedFigure) == true) {
+        if (selectedFigure.getDotFlag() &&
+                selector.contains(selectedFigure)) {
             selector.removeFiguresInBag();
         } else {
             figures.remove(selectedFigure);

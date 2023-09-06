@@ -16,7 +16,6 @@ public class DrawerFrame extends JFrame {
 	public static final int FONT_STYLE = 2;
 	public static final int FONT_SIZE = 3;
 
-
 	//Load and filter font list
 	public static String[] getFontList() {
 		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -274,24 +273,20 @@ public class DrawerFrame extends JFrame {
 
 		talkDialog = new KTalkDialog(this);
 
-		sp.registerKeyboardAction(new ActionListener() {
-									  public void actionPerformed(ActionEvent evt) {
-										  JScrollBar scrollBar = sp.getVerticalScrollBar();
-										  scrollBar.setValue(scrollBar.getValue()
-												  + scrollBar.getBlockIncrement());
-									  }
-								  }
-				, KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_DOWN, 0)
+		sp.registerKeyboardAction(evt -> {
+            JScrollBar scrollBar = sp.getVerticalScrollBar();
+            scrollBar.setValue(scrollBar.getValue()
+                    + scrollBar.getBlockIncrement());
+        }
+                , KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_DOWN, 0)
 				, JComponent.WHEN_IN_FOCUSED_WINDOW
 		);
-		sp.registerKeyboardAction(new ActionListener() {
-									  public void actionPerformed(ActionEvent evt) {
-										  JScrollBar scrollBar = sp.getVerticalScrollBar();
-										  scrollBar.setValue(scrollBar.getValue()
-												  - scrollBar.getBlockIncrement());
-									  }
-								  }
-				, KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_UP, 0)
+		sp.registerKeyboardAction(evt -> {
+            JScrollBar scrollBar = sp.getVerticalScrollBar();
+            scrollBar.setValue(scrollBar.getValue()
+                    - scrollBar.getBlockIncrement());
+        }
+                , KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_UP, 0)
 				, JComponent.WHEN_IN_FOCUSED_WINDOW
 		);
 		sp.registerKeyboardAction((evt) -> {
