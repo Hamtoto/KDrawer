@@ -3,7 +3,6 @@ package kdr.fig;
 import java.awt.*;
 
 public class KText extends KBox {
-    private static final long serialVersionUID = -5526552132759568802L;
     String[] lines;
     Font font;
 
@@ -15,7 +14,7 @@ public class KText extends KBox {
         this(color, font, x, y, x, y, null);
     }
 
-    public KText(Color color, Font font, int x1, int y1, int x2, int y2, String lines[]) {
+    public KText(Color color, Font font, int x1, int y1, int x2, int y2, String[] lines) {
         super(color, x1, y1, x2, y2);
         this.lines = lines;
         this.font = font;

@@ -3,24 +3,24 @@ package kdr.fig;
 import java.awt.*;
 
 public class KArrow extends KTwoPointFigure {
-    protected boolean fillFlag;
+	protected boolean fillFlag;
 
-    public KArrow(Color color) {
-        this(color, 0, 0);
-    }
+	public KArrow(Color color) {
+		this(color, 0, 0);
+	}
 
-    public KArrow(Color color, int x, int y) {
-        this(color, x, y, x, y);
-    }
+	public KArrow(Color color, int x, int y) {
+		this(color, x, y, x, y);
+	}
 
-    public KArrow(Color color, int x1, int y1, int x2, int y2) {
-        this(color, 1, x1, y1, x2, y2);
-    }
+	public KArrow(Color color, int x1, int y1, int x2, int y2) {
+		this(color, 1, x1, y1, x2, y2);
+	}
 
-    public KArrow(Color color, int thickness, int x1, int y1, int x2, int y2) {
-        super(color, thickness, x1, y1, x2, y2);
-        fillFlag = false;
-    }
+	public KArrow(Color color, int thickness, int x1, int y1, int x2, int y2) {
+		super(color, thickness, x1, y1, x2, y2);
+		fillFlag = false;
+	}
 
 	void drawArrow(Graphics g, int x1, int y1, int x2, int y2) {
 		int width;
@@ -40,11 +40,11 @@ public class KArrow extends KTwoPointFigure {
 		int dx = (int) (width * Math.cos(angle));
 		int dy = (int) (width * Math.sin(angle));
 
-		int xpoints[] = new int[7];
-		int ypoints[] = new int[7];
+		int[] xpoints = new int[7];
+		int[] ypoints = new int[7];
 
-		xpoints[0] = x + dx/2;		ypoints[0] = y + dy/2;
-		xpoints[1] = x - dx/2;		ypoints[1] = y - dy/2;
+		xpoints[0] = x + dx/2;			ypoints[0] = y + dy/2;
+		xpoints[1] = x - dx/2;			ypoints[1] = y - dy/2;
 		xpoints[2] = x + w/2 - dx/2;	ypoints[2] = y + h/2 - dy/2;
 		xpoints[3] = x + w/2 - dx;		ypoints[3] = y + h/2 - dy;
 		xpoints[4] = x2;				ypoints[4] = y2;
@@ -53,7 +53,7 @@ public class KArrow extends KTwoPointFigure {
 
 		g.drawPolygon(xpoints, ypoints, 7);
 
-		if (fillFlag == true) {
+		if (fillFlag) {
 			g.fillPolygon(xpoints, ypoints, 7);
 		}
 	}
@@ -63,7 +63,7 @@ public class KArrow extends KTwoPointFigure {
 	}
 
 	protected void drawEx(Graphics g) {
-		if (dotFlag == true) drawDotEx(g);
+		if (dotFlag) drawDotEx(g);
 
 		drawArrow(g, x1, y1, x2, y2);
 	}
@@ -75,7 +75,6 @@ public class KArrow extends KTwoPointFigure {
 
 	void eraseDot(Graphics g) {
 		super.eraseDot(g);
-
 		drawDotEx(g);
 	}
 
@@ -102,8 +101,8 @@ public class KArrow extends KTwoPointFigure {
 		angle = (theta + Math.PI / 2.);
 		int dx = (int) (width * Math.cos(angle));
 		int dy = (int) (width * Math.sin(angle));
-		int xpoints[] = new int[7];
-		int ypoints[] = new int[7];
+		int[] xpoints = new int[7];
+		int[] ypoints = new int[7];
 
 		xpoints[0] = x + dx/2;			ypoints[0] = y + dy/2;
 		xpoints[1] = x - dx/2;			ypoints[1] = y - dy/2;

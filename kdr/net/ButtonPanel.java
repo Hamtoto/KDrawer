@@ -1,10 +1,8 @@
 package kdr.net;
 
-import java.awt.*;
 import javax.swing.*;
 
-class ButtonPanel extends JPanel
-{
+class ButtonPanel extends JPanel {
     MainPanel mainWnd;
     JTextField ip;
     JButton connectButton;
@@ -22,13 +20,16 @@ class ButtonPanel extends JPanel
 
         connectButton.addActionListener(mainWnd);
     }
+
     String getIpAddress() {
         return ip.getText();
     }
+
     void setActionCommand(String s) {
         connectButton.setActionCommand(s);
         connectButton.setLabel(s);
     }
+
     void setIPAddress(String address) {
         ip.setText(address);
     }

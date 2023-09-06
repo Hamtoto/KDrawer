@@ -3,7 +3,6 @@ package kdr.fig;
 import java.awt.*;
 
 public class KCircle extends KTwoPointFigure {
-    private static final long serialVersionUID = -8390635094601811752L;
     private boolean fillFlag;
 
     public KCircle(Color color) {
@@ -45,7 +44,7 @@ public class KCircle extends KTwoPointFigure {
 
         g.drawOval(minX, minY, width, height);
 
-        if (fillFlag == true) {
+        if (fillFlag) {
             g.fillOval(minX, minY, width, height);
         }
     }

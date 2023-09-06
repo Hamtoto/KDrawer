@@ -3,7 +3,6 @@ package kdr.fig;
 import java.awt.*;
 
 public abstract class KTwoPointFigure extends KFigure {
-	private static final long serialVersionUID = -6589521908297711448L;
 	protected int x1;
 	protected int y1;
 	protected int x2;
@@ -56,7 +55,7 @@ public abstract class KTwoPointFigure extends KFigure {
 	}
 
 	void drawEx(Graphics g) {
-		if (dotFlag == false) return;
+		if (!dotFlag) return;
 
 		drawDotEx(g);
 	}
@@ -73,8 +72,8 @@ public abstract class KTwoPointFigure extends KFigure {
 			y2 = tmp;
 		}
 
-		int xpoints[] = new int[4];
-		int ypoints[] = new int[4];
+		int[] xpoints = new int[4];
+		int[] ypoints = new int[4];
 
 		xpoints[0] = x1; ypoints[0] = y1;
 		xpoints[1] = x2; ypoints[1] = y1;

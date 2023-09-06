@@ -1,15 +1,9 @@
 package kdr.fig;
 
-import kdr.gui.popup.*;
-
 import java.awt.*;
-import java.util.*;
-import javax.swing.*;
 import java.awt.geom.*;
 
 public class KCurve extends KLinearFigure {
-    private static final long serialVersionUID = 1L;
-
     static private int ARROW_LENGTH = 15;
     static private int NONE = 0;
     static private int HEAD = 1;
@@ -100,7 +94,7 @@ public class KCurve extends KLinearFigure {
             KLine.drawArrow(g, px2, py2, px1, py1);
         }
 
-        if (dotFlag == true) drawDotEx(g);
+        if (dotFlag) drawDotEx(g);
 
         CubicCurve2D.Double curve = new CubicCurve2D.Double();
         curve.setCurve(pt[0].x, pt[0].y, pt[1].x, pt[1].y,

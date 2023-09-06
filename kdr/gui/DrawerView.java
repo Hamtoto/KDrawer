@@ -270,7 +270,6 @@ public class DrawerView extends JPanel
         KRLabels.put("Thickness", "굵기 정하기");
         KRLabels.put("Fill", "채우기");
         KRLabels.put("Round", "둥근 사각형으로");
-        KRLabels.put("Arrow", "화살표");
         KRLabels.put("Close", "폐쇄하기");
         KRLabels.put("Open", "개방하기");
         KRLabels.put("Angle", "각도정하기");
@@ -1132,12 +1131,12 @@ public class DrawerView extends JPanel
         if (selectedFigure == null) return;
 
         if (actionMode == DRAWING && selectedFigure instanceof KScribble) {
-            // do not rubberbanding
+            // do not rubber banding
             selectedFigure.drawing(g, x, y);
             return;
         }
         if (actionMode == DRAWING && selectedFigure instanceof KEraser) {
-            // do not rubberbanding
+            // do not rubber banding
             selectedFigure.drawing(g, x, y);
             return;
         }
@@ -1270,14 +1269,14 @@ public class DrawerView extends JPanel
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
-    public void setColorForSeletedFigure(Color color) {
+    public void setColorForSelectedFigure(Color color) {
         if (selectedFigure == null) return;
         selectedFigure.setColor(color);
         repaint();
         setModified();
     }
 
-    public void setThicknessForSeletedFigure(int thickness) {
+    public void setThicknessForSelectedFigure(int thickness) {
         if (selectedFigure == null) return;
         selectedFigure.setThickness(thickness);
         repaint();
@@ -1287,7 +1286,7 @@ public class DrawerView extends JPanel
     public void showColorChooser() {
         Color color = JColorChooser.showDialog(null,
                 "Color Chooser", Color.black);
-        setColorForSeletedFigure(color);
+        setColorForSelectedFigure(color);
     }
 
     public void boxToRoundBox() {

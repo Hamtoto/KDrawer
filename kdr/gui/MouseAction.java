@@ -1,9 +1,7 @@
 package kdr.gui;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 
 class MouseAction extends AbstractAction {
     private DrawerView view;

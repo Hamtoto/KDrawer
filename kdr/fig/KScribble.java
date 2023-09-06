@@ -142,7 +142,7 @@ public class KScribble extends KLinearFigure implements Shape {
     }
 
     void drawEx(Graphics g) {
-        if (dotFlag == true) drawDotEx(g);
+        if (dotFlag) drawDotEx(g);
 
         if (pt != null) {
             Graphics2D g2 = (Graphics2D) g;

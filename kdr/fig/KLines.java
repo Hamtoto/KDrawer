@@ -4,12 +4,8 @@ import kdr.gui.*;
 import kdr.gui.popup.*;
 
 import java.awt.*;
-import java.util.*;
-import javax.swing.*;
 
 public class KLines extends KLinearFigure {
-    private static final long serialVersionUID = 1L;
-
     static private int ARROW_LENGTH = 15;
     static private int NONE = 0;
     static private int HEAD = 1;
@@ -37,7 +33,7 @@ public class KLines extends KLinearFigure {
     public void preparePopup() {
         super.preparePopup();
         KLinesPopup linesPopup = (KLinesPopup) popup;
-        if (closedFlag == true) {
+        if (closedFlag) {
             linesPopup.setDoorLabel(DrawerView.Labels.get("Open"));
             linesPopup.setEnableFillItem(true);
         } else {

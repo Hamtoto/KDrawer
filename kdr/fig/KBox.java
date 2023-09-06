@@ -5,10 +5,9 @@ import kdr.gui.popup.*;
 import java.awt.*;
 
 public class KBox extends KTwoPointFigure {
-    private static final long serialVersionUID = -5352317005542174751L;
     protected boolean fillFlag;
 
-    private static int ArcLength = 30;
+    private static final int ArcLength = 30;
     private boolean roundFlag;
 
     public KBox(Color color) {
@@ -51,7 +50,7 @@ public class KBox extends KTwoPointFigure {
             g.drawRect(minX, minY, width, height);
         }
 
-        if (fillFlag == true) {
+        if (fillFlag) {
             if (roundFlag) {
                 g.fillRoundRect(minX, minY, width, height, ArcLength, ArcLength);
             } else {

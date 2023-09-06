@@ -4,7 +4,6 @@ import java.awt.*;
 
 public abstract class KOnePointFigure extends KFigure
 {
-	private static final long serialVersionUID = -4697729503185578348L;
 	protected int x1;
 	protected int y1;
 	public KOnePointFigure(Color color) {
@@ -22,8 +21,8 @@ public abstract class KOnePointFigure extends KFigure
 		x1 = x1 + dx; y1 = y1 + dy;
 	}
 	public void makeRegion() {
-		int xpoints[] = new int[4];
-		int ypoints[] = new int[4];
+		int[] xpoints = new int[4];
+		int[] ypoints = new int[4];
 
 		xpoints[0] = x1-GAP; ypoints[0] = y1-GAP;
 		xpoints[1] = x1+GAP; ypoints[1] = y1-GAP;
@@ -60,7 +59,7 @@ public abstract class KOnePointFigure extends KFigure
 		drawDotEx(g);
 	}
 	void drawEx(Graphics g) {
-		if (dotFlag == false) return;
+		if (!dotFlag) return;
 		
 		drawDotEx(g);
 	}

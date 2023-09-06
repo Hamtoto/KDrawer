@@ -3,8 +3,6 @@ package kdr.fig;
 import java.awt.*;
 
 public class KPoint extends KOnePointFigure {
-    private static final long serialVersionUID = 573154677467364041L;
-
     public KPoint(Color color) {
         super(color);
     }

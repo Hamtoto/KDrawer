@@ -3,8 +3,6 @@ package kdr.fig;
 import java.awt.*;
 
 public class KLine extends KTwoPointFigure {
-	private static final long serialVersionUID = -2787538065501750475L;
-
 	static private int ARROW_LENGTH = 15;
 	static private int NONE = 0;
 	static private int HEAD = 1;
@@ -69,8 +67,8 @@ public class KLine extends KTwoPointFigure {
 		int dx2 = (int) (ARROW_LENGTH * Math.cos(angle2));
 		int dy2 = (int) (ARROW_LENGTH * Math.sin(angle2));
 
-		int xpoints[] = new int[2];
-		int ypoints[] = new int[2];
+		int[] xpoints = new int[2];
+		int[] ypoints = new int[2];
 		if (w >= 0) {
 			xpoints[0] = x2 + dx1;	ypoints[0] = y2 + dy1;
 			xpoints[1] = x2 + dx2;	ypoints[1] = y2 + dy2;
@@ -88,7 +86,7 @@ public class KLine extends KTwoPointFigure {
 	}
 
 	protected void drawEx(Graphics g) {
-		if (dotFlag == true) drawDotEx(g);
+		if (dotFlag) drawDotEx(g);
 
 		if (whichDirection == BOTH || whichDirection == HEAD) {
 			drawArrow(g, x1, y1, x2, y2);
@@ -127,8 +125,8 @@ public class KLine extends KTwoPointFigure {
 		angle = (theta + Math.PI / 2.);
 		int dx = (int) (regionWidth * Math.cos(angle));
 		int dy = (int) (regionWidth * Math.sin(angle));
-		int xpoints[] = new int[4];
-		int ypoints[] = new int[4];
+		int[] xpoints = new int[4];
+		int[] ypoints = new int[4];
       	xpoints[0] = x + dx;     ypoints[0] = y + dy;
       	xpoints[1] = x - dx;     ypoints[1] = y - dy;
       	xpoints[2] = x + w - dx; ypoints[2] = y + h - dy;

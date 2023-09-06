@@ -5,7 +5,6 @@ import kdr.gui.popup.*;
 import java.awt.*;
 
 public class KTriangle extends KTwoPointFigure {
-	//private static final long serialVersionUID = -2787538065501750475L;
 	protected boolean fillFlag;
 
 	private double cornerAngle;
@@ -49,14 +48,14 @@ public class KTriangle extends KTwoPointFigure {
 		angle = (theta + Math.PI / 2.);
 		int dx = (int) (width * Math.cos(angle));
 		int dy = (int) (width * Math.sin(angle));
-		int xpoints[] = new int[3];
-		int ypoints[] = new int[3];
+		int[] xpoints = new int[3];
+		int[] ypoints = new int[3];
 		xpoints[0] = x + dx;	ypoints[0] = y + dy;
 		xpoints[1] = x - dx;	ypoints[1] = y - dy;
 		xpoints[2] = x2;		ypoints[2] = y2;
 		g.drawPolygon(xpoints, ypoints, 3);
 
-		if (fillFlag == true) {
+		if (fillFlag) {
 			g.fillPolygon(xpoints, ypoints, 3);
 		}
 	}
@@ -78,8 +77,8 @@ public class KTriangle extends KTwoPointFigure {
 		angle = (theta + Math.PI / 2.);
 		int dx = (int) (width * Math.cos(angle));
 		int dy = (int) (width * Math.sin(angle));
-		int xpoints[] = new int[3];
-		int ypoints[] = new int[3];
+		int[] xpoints = new int[3];
+		int[] ypoints = new int[3];
 		xpoints[0] = x + dx;	ypoints[0] = y + dy;
 		xpoints[1] = x - dx;	ypoints[1] = y - dy;
 		xpoints[2] = x2;		ypoints[2] = y2;
@@ -91,7 +90,7 @@ public class KTriangle extends KTwoPointFigure {
 	}
 
 	protected void drawEx(Graphics g) {
-		if (dotFlag == true) drawDotEx(g);
+		if (dotFlag) drawDotEx(g);
 
 		drawTriangle(g, x1, y1, x2, y2);
 	}

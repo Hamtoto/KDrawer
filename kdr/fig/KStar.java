@@ -6,7 +6,6 @@ import kdr.gui.popup.*;
 import java.awt.*;
 
 public class KStar extends KTwoPointFigure {
-    //private static final long serialVersionUID = -5352317005542174751L;
     protected boolean fillFlag;
     private boolean isStar;
 
@@ -49,25 +48,25 @@ public class KStar extends KTwoPointFigure {
 
 
         if (isStar) {
-            int xpoints[] = new int[10];
-            int ypoints[] = new int[10];
+            int[] xpoints = new int[10];
+            int[] ypoints = new int[10];
 
             makeStarPolygon(minX, minY, minLen, minLen, xpoints, ypoints);
 
             g.drawPolygon(xpoints, ypoints, 10);
 
-            if (fillFlag == true) {
+            if (fillFlag) {
                 g.fillPolygon(xpoints, ypoints, 10);
             }
         } else {
-            int xpoints[] = new int[5];
-            int ypoints[] = new int[5];
+            int[] xpoints = new int[5];
+            int[] ypoints = new int[5];
 
             makePentaPolygon(minX, minY, minLen, minLen, xpoints, ypoints);
 
             g.drawPolygon(xpoints, ypoints, 5);
 
-            if (fillFlag == true) {
+            if (fillFlag) {
                 g.fillPolygon(xpoints, ypoints, 5);
             }
         }
@@ -105,15 +104,15 @@ public class KStar extends KTwoPointFigure {
         y2 = y1 + minLen;
 
         if (isStar) {
-            int xpoints[] = new int[10];
-            int ypoints[] = new int[10];
+            int[] xpoints = new int[10];
+            int[] ypoints = new int[10];
 
             makeStarPolygon(minX, minY, minLen, minLen, xpoints, ypoints);
 
             region = new Polygon(xpoints, ypoints, 10);
         } else {
-            int xpoints[] = new int[5];
-            int ypoints[] = new int[5];
+            int[] xpoints = new int[5];
+            int[] ypoints = new int[5];
 
             makePentaPolygon(minX, minY, minLen, minLen, xpoints, ypoints);
 
@@ -122,10 +121,10 @@ public class KStar extends KTwoPointFigure {
     }
 
     public static void makeStarPolygon(int x, int y, int width, int height,
-                                       int xp[], int yp[]) {
+                                       int[] xp, int[] yp) {
         int cx = x + width / 2;
         int cy = y + height / 2;
-        double r1 = width / 2;
+        double r1 = (double) width / 2;
         double r2 = 0.3819660113 * r1; // sin(54)-tan(36)*cos(54)
         double delta = 2 * Math.PI / 5;
         int pos = 0;
@@ -150,10 +149,10 @@ public class KStar extends KTwoPointFigure {
     }
 
     public static void makePentaPolygon(int x, int y, int width, int height,
-                                        int xp[], int yp[]) {
+                                        int[] xp, int[] yp) {
         int cx = x + width / 2;
         int cy = y + height / 2;
-        double r1 = width / 2;
+        double r1 = (double) width / 2;
         double delta = 2 * Math.PI / 5;
         int pos = 0;
 
@@ -173,7 +172,7 @@ public class KStar extends KTwoPointFigure {
     public void preparePopup() {
         super.preparePopup();
         KStarPopup starPopup = (KStarPopup) popup;
-        if (isStar == true) {
+        if (isStar) {
             starPopup.setChangeShapeLabel(DrawerView.Labels.get("To Pentagon"));
         } else {
             starPopup.setChangeShapeLabel(DrawerView.Labels.get("To Star"));

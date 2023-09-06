@@ -2,9 +2,7 @@ package kdr.fig;
 
 import kdr.gui.*;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.*;
 
 public class KSelector {
@@ -112,7 +110,7 @@ public class KSelector {
 			if (pFigure.isContainedIn(region)) {
 				pFigure.drawDot(g);
 				bag.add(pFigure);
-			} else if (pFigure.getDotFlag() == true) {
+			} else if (pFigure.getDotFlag()) {
 				g.setColor(canvas.getBackground());
 				pFigure.eraseDot(g);
 				bag.remove(pFigure);

@@ -6,10 +6,9 @@ import java.util.ArrayList;
 
 public abstract class KLinearFigure extends KFigure
 {
-	private static final long serialVersionUID = 1L;
-	protected Polygon ptRegion[];
+	protected Polygon[] ptRegion;
 	protected ArrayList<Point> list;
-	protected Point pt[];
+	protected Point[] pt;
 	protected KLine lastLine;
 	protected boolean closedFlag;
 	protected boolean fillFlag;
@@ -65,7 +64,7 @@ public abstract class KLinearFigure extends KFigure
 		drawDotEx(g);
 	}
 	void drawEx(Graphics g) {
-		if (dotFlag == true) drawDotEx(g);
+		if (dotFlag) drawDotEx(g);
 
 		if (pt != null)	{
 			for (int i = 0; i < pt.length-1; i++) {
@@ -76,8 +75,8 @@ public abstract class KLinearFigure extends KFigure
 							pt[pt.length-1].x,pt[pt.length-1].y);
 			}
 			if (fillFlag) {
-				int xpoints[] = new int[pt.length];
-				int ypoints[] = new int[pt.length];
+				int[] xpoints = new int[pt.length];
+				int[] ypoints = new int[pt.length];
 				for (int i = 0; i < pt.length; i++) {
 					xpoints[i] = pt[i].x;
 					ypoints[i] = pt[i].y;
@@ -96,8 +95,8 @@ public abstract class KLinearFigure extends KFigure
 	}
 	static Polygon createPtRegion(Point pt)
 	{
-		int xpoints[] = new int[4];
-		int ypoints[] = new int[4];
+		int[] xpoints = new int[4];
+		int[] ypoints = new int[4];
 
 		xpoints[0] = pt.x-GAP; ypoints[0] = pt.y-GAP;
 		xpoints[1] = pt.x+GAP; ypoints[1] = pt.y-GAP;
@@ -110,7 +109,7 @@ public abstract class KLinearFigure extends KFigure
 		if (ptRegion == null) return false;
 		for(int i = 0; i < ptRegion.length; i++) {
 			Rectangle2D boundBox = ptRegion[i].getBounds2D();
-			if (selectorRegion.contains(boundBox) == false) return false;
+			if (!selectorRegion.contains(boundBox)) return false;
 		}
 		return true;
 	}

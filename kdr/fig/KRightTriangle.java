@@ -1,11 +1,8 @@
 package kdr.fig;
 
-import kdr.gui.popup.*;
-
 import java.awt.*;
 
 public class KRightTriangle extends KTwoPointFigure {
-	private static final long serialVersionUID = -5352317005542174751L;
 	protected boolean fillFlag;
 
 	public KRightTriangle(Color color) {
@@ -36,9 +33,9 @@ public class KRightTriangle extends KTwoPointFigure {
 		g.drawLine(x1, y2, x2, y1);
 		g.drawLine(x2, y1, x1, y1);
 
-		if (fillFlag == true) {
-			int xpoints[] = new int[3];
-			int ypoints[] = new int[3];
+		if (fillFlag) {
+			int[] xpoints = new int[3];
+			int[] ypoints = new int[3];
 			xpoints[0] = x1;	ypoints[0] = y1;
 			xpoints[1] = x1;	ypoints[1] = y2;
 			xpoints[2] = x2;	ypoints[2] = y1;
@@ -67,8 +64,8 @@ public class KRightTriangle extends KTwoPointFigure {
 	}
 
 	public void makeRegion() {
-		int xpoints[] = new int[3];
-		int ypoints[] = new int[3];
+		int[] xpoints = new int[3];
+		int[] ypoints = new int[3];
 
 		xpoints[0] = x1;	ypoints[0] = y1;
 		xpoints[1] = x1;	ypoints[1] = y2;
@@ -77,9 +74,9 @@ public class KRightTriangle extends KTwoPointFigure {
 	}
 
 	public KFigure copy() {
-		KRightTriangle newRtriangle = new KRightTriangle(color, thickness, x1, y1, x2, y2);
-		newRtriangle.popup = popup;
-		newRtriangle.fillFlag = fillFlag;
-		return newRtriangle;
+		KRightTriangle newRightTriangle = new KRightTriangle(color, thickness, x1, y1, x2, y2);
+		newRightTriangle.popup = popup;
+		newRightTriangle.fillFlag = fillFlag;
+		return newRightTriangle;
 	}
 }

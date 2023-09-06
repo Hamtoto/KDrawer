@@ -1,6 +1,5 @@
 package kdr.fig;
 
-import java.awt.geom.*;
 import java.awt.*;
 
 public class KEraser extends KLinearFigure {
@@ -27,7 +26,7 @@ public class KEraser extends KLinearFigure {
     }
 
     void drawEx(Graphics g) {
-        if (dotFlag == true) drawDotEx(g);
+        if (dotFlag) drawDotEx(g);
 
         g.setColor(Color.white);
         if (pt != null) {

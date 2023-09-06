@@ -1,7 +1,6 @@
 package kdr.net;
 
-class Message
-{
+class Message {
     private String who;
     private String message;
 
@@ -9,9 +8,11 @@ class Message
         this.who = who;
         this.message = message;
     }
+
     String getWho() {
         return who;
     }
+
     String getMessage() {
         return message;
     }

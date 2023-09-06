@@ -1,51 +1,46 @@
 package kdr.gui.popup;
 
 import kdr.gui.*;
-
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 
-public class KMainPopup extends KPopup
-{
-	private static final long serialVersionUID = -5296349184547363210L;
-	public KMainPopup(DrawerView view) {
-		super("Figure");
+public class KMainPopup extends KPopup {
+    public KMainPopup(DrawerView view) {
+        super("Figure");
 
-		JMenuItem pointItem = new JMenuItem(view.getPointAction());
-		popupPtr.add(pointItem);
+        JMenuItem pointItem = new JMenuItem(view.getPointAction());
+        popupPtr.add(pointItem);
 
-		JMenuItem boxItem = new JMenuItem(view.getBoxAction());
-		popupPtr.add(boxItem);
+        JMenuItem boxItem = new JMenuItem(view.getBoxAction());
+        popupPtr.add(boxItem);
 
-		JMenuItem lineItem = new JMenuItem(view.getLineAction());
-		popupPtr.add(lineItem);
+        JMenuItem lineItem = new JMenuItem(view.getLineAction());
+        popupPtr.add(lineItem);
 
-		JMenuItem linesItem = new JMenuItem(view.getLinesAction());
-		popupPtr.add(linesItem);
+        JMenuItem linesItem = new JMenuItem(view.getLinesAction());
+        popupPtr.add(linesItem);
 
-		JMenuItem curveItem = new JMenuItem(view.getCurveAction());
-		popupPtr.add(curveItem);
+        JMenuItem curveItem = new JMenuItem(view.getCurveAction());
+        popupPtr.add(curveItem);
 
-		JMenuItem arrowItem = new JMenuItem(view.getArrowAction());
-		popupPtr.add(arrowItem);
+        JMenuItem arrowItem = new JMenuItem(view.getArrowAction());
+        popupPtr.add(arrowItem);
 
-		JMenuItem circleItem = new JMenuItem(view.getCircleAction());
-		popupPtr.add(circleItem);
+        JMenuItem circleItem = new JMenuItem(view.getCircleAction());
+        popupPtr.add(circleItem);
 
-		JMenuItem triangleItem = new JMenuItem(view.getTriangleAction());
-		popupPtr.add(triangleItem);
+        JMenuItem triangleItem = new JMenuItem(view.getTriangleAction());
+        popupPtr.add(triangleItem);
 
-		JMenuItem diamondItem = new JMenuItem(view.getDiamondAction());
-		popupPtr.add(diamondItem);
+        JMenuItem diamondItem = new JMenuItem(view.getDiamondAction());
+        popupPtr.add(diamondItem);
 
-		JMenuItem starItem = new JMenuItem(view.getStarAction());
-		popupPtr.add(starItem);
+        JMenuItem starItem = new JMenuItem(view.getStarAction());
+        popupPtr.add(starItem);
 
-		JMenuItem textItem = new JMenuItem(view.getTextAction());
-		popupPtr.add(textItem);
+        JMenuItem textItem = new JMenuItem(view.getTextAction());
+        popupPtr.add(textItem);
 
-		JMenuItem imageItem = new JMenuItem(view.getImageAction());
-		popupPtr.add(imageItem);
-	}
+        JMenuItem imageItem = new JMenuItem(view.getImageAction());
+        popupPtr.add(imageItem);
+    }
 }

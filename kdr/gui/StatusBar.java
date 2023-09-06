@@ -2,7 +2,6 @@ package kdr.gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class StatusBar extends JPanel {
     JTextField position;

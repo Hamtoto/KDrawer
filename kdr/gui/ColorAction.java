@@ -3,7 +3,6 @@ package kdr.gui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 
 class ColorAction extends AbstractAction {
     static class ColorIcon implements Icon {

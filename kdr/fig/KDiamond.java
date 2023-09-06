@@ -3,7 +3,6 @@ package kdr.fig;
 import java.awt.*;
 
 public class KDiamond extends KTwoPointFigure {
-	private static final long serialVersionUID = -5352317005542174751L;
 	protected boolean fillFlag;
 
 	public KDiamond(Color color) {
@@ -35,8 +34,8 @@ public class KDiamond extends KTwoPointFigure {
 		int width = Math.abs(x2 - x1);
 		int height = Math.abs(y2 - y1);
 
-		int xpoints[] = new int[4];
-		int ypoints[] = new int[4];
+		int[] xpoints = new int[4];
+		int[] ypoints = new int[4];
 
 		xpoints[0] = minX + (width / 2); 	ypoints[0] = minY;
 		xpoints[1] = minX + width; 			ypoints[1] = minY + (height / 2);
@@ -45,7 +44,7 @@ public class KDiamond extends KTwoPointFigure {
 
 		g.drawPolygon(xpoints, ypoints, 4);
 
-		if (fillFlag == true) {
+		if (fillFlag) {
 			g.fillPolygon(xpoints, ypoints, 4);
 		}
 	}
@@ -74,8 +73,8 @@ public class KDiamond extends KTwoPointFigure {
 		int width = Math.abs(x2 - x1);
 		int height = Math.abs(y2 - y1);
 
-		int xpoints[] = new int[4];
-		int ypoints[] = new int[4];
+		int[] xpoints = new int[4];
+		int[] ypoints = new int[4];
 
 		xpoints[0] = minX + (width / 2); 	ypoints[0] = minY;
 		xpoints[1] = minX + width; 			ypoints[1] = minY + (height / 2);

@@ -43,20 +43,23 @@ class FigureIcon implements Icon {
 			g.drawLine(x + WIDTH * 2 / 3, y + 7, x + WIDTH, y + HEIGHT);
 		} else if (figureType.equals(DrawerView.figureType[4])) // Curve
 		{
-			int xp[] = new int[4];
-			int yp[] = new int[4];
+			int[] xp = new int[4];
+			int[] yp = new int[4];
+
 			CubicCurve2D.Double curve = new CubicCurve2D.Double();
+
 			xp[0] = x;				yp[0] = y;
 			xp[1] = x+WIDTH/3;		yp[1] = y+HEIGHT;
 			xp[2] = x+WIDTH*2/3;	yp[2] = y;
 			xp[3] = x+WIDTH;		yp[3] = y+HEIGHT;
+
 			curve.setCurve(xp[0], yp[0], xp[1], yp[1], xp[2], yp[2], xp[3], yp[3]);
 			Graphics2D g2 = (Graphics2D) g;
 			g2.draw(curve);
 		} else if (figureType.equals(DrawerView.figureType[5])) // Arrow
 		{
-			int xpoints[] = new int[7];
-			int ypoints[] = new int[7];
+			int[] xpoints = new int[7];
+			int[] ypoints = new int[7];
 
 			xpoints[0] = x;				ypoints[0] = y+HEIGHT-4;
 			xpoints[1] = x;				ypoints[1] = y+4;
@@ -86,8 +89,8 @@ class FigureIcon implements Icon {
 					new int[]{y, y + (HEIGHT / 2), y + HEIGHT, y + (HEIGHT / 2)}, 4);
 		} else if (figureType.equals(DrawerView.figureType[10])) // Star
 		{
-			int xpoints[] = new int[10];
-			int ypoints[] = new int[10];
+			int[] xpoints = new int[10];
+			int[] ypoints = new int[10];
 
 			KStar.makeStarPolygon(4, 4, 20, 20, xpoints, ypoints);
 			g.drawPolygon(xpoints, ypoints, 10);
