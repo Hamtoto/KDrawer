@@ -448,7 +448,7 @@ public class DrawerFrame extends JFrame {
 		fileMenu.add(newFile);
 		newFile.setMnemonic('N');
 		newFile.setBackground(Color.white);
-		newFile.setIcon(new ImageIcon(Objects.requireNonNull(DrawerFrame.class.getResource("./image/newFile.png"))));
+		//newFile.setIcon(new ImageIcon(Objects.requireNonNull(DrawerFrame.class.getResource("./image/newFile.png"))));
 		newFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
 		newFile.addActionListener((e) -> canvas.doFileNew());
 
@@ -457,7 +457,7 @@ public class DrawerFrame extends JFrame {
 		fileMenu.add(openFile);
 		openFile.setMnemonic('O');
 		openFile.setBackground(Color.white);
-		openFile.setIcon(new ImageIcon(Objects.requireNonNull(DrawerFrame.class.getResource("./image/openFile.png"))));
+		//openFile.setIcon(new ImageIcon(Objects.requireNonNull(DrawerFrame.class.getResource("./image/openFile.png"))));
 		openFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
 		openFile.addActionListener((e) -> doOpen());
 
@@ -466,7 +466,7 @@ public class DrawerFrame extends JFrame {
 		fileMenu.add(saveFile);
 		saveFile.setMnemonic('S');
 		saveFile.setBackground(Color.white);
-		saveFile.setIcon(new ImageIcon(Objects.requireNonNull(DrawerFrame.class.getResource("./image/saveFile.png"))));
+		//saveFile.setIcon(new ImageIcon(Objects.requireNonNull(DrawerFrame.class.getResource("./image/saveFile.png"))));
 		saveFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
 		saveFile.addActionListener((e) -> canvas.doSave(fileName));
 
@@ -475,7 +475,7 @@ public class DrawerFrame extends JFrame {
 		fileMenu.add(saveAsFile);
 		saveAsFile.setMnemonic('A');
 		saveAsFile.setBackground(Color.white);
-		saveAsFile.setIcon(new ImageIcon(Objects.requireNonNull(DrawerFrame.class.getResource("./image/saveAsFile.png"))));
+		//saveAsFile.setIcon(new ImageIcon(Objects.requireNonNull(DrawerFrame.class.getResource("./image/saveAsFile.png"))));
 		saveAsFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
 		saveAsFile.addActionListener((e) -> doSaveAs());
 
@@ -486,7 +486,7 @@ public class DrawerFrame extends JFrame {
 		fileMenu.add(printFile);
 		printFile.setMnemonic('P');
 		printFile.setBackground(Color.white);
-		printFile.setIcon(new ImageIcon(Objects.requireNonNull(DrawerFrame.class.getResource("./image/printFile.png"))));
+		//printFile.setIcon(new ImageIcon(Objects.requireNonNull(DrawerFrame.class.getResource("./image/printFile.png"))));
 		printFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
 		printFile.addActionListener((e) -> doPrint());
 
@@ -497,7 +497,7 @@ public class DrawerFrame extends JFrame {
 		fileMenu.add(exit);
 		exit.setMnemonic('X');
 		exit.setBackground(Color.white);
-		exit.setIcon(new ImageIcon(Objects.requireNonNull(DrawerFrame.class.getResource("./image/exit.png"))));
+		//exit.setIcon(new ImageIcon(Objects.requireNonNull(DrawerFrame.class.getResource("./image/exit.png"))));
 		exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_MASK));
 		exit.addActionListener(e -> setVisible(false));
 
@@ -562,7 +562,7 @@ public class DrawerFrame extends JFrame {
 		modalTool.addActionListener((e) -> {
 			if (dialog == null) {
 				dialog =
-						new FigureDialog("Figure Dialog", canvas);
+						new FigureDialog(DrawerView.Labels.get("Figure Dialog"), canvas);
 				dialog.setModal(true);
 			}
 			dialog.setVisible(true);
@@ -574,7 +574,7 @@ public class DrawerFrame extends JFrame {
 		tableTool.addActionListener((e) -> {
 			if (tableDialog == null) {
 				tableDialog =
-						new TableDialog("Table Dialog", canvas);
+						new TableDialog(DrawerView.Labels.get("Table Dialog"), canvas);
 				tableDialog.setModal(true);
 			}
 			tableDialog.setVisible(true);
@@ -586,7 +586,7 @@ public class DrawerFrame extends JFrame {
 		treeTool.addActionListener((e) -> {
 			if (treeDialog == null) {
 				treeDialog =
-						new TreeDialog("Tree Dialog", canvas);
+						new TreeDialog(DrawerView.Labels.get("Tree Dialog"), canvas);
 				treeDialog.setModal(true);
 			}
 			treeDialog.setVisible(true);

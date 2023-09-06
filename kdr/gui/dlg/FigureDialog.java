@@ -176,7 +176,7 @@ public class FigureDialog extends JDialog {
             } else if (selection.equals("Triangle")) {
                 newFigure = new KTriangle(color, x1, y1, x2, y2);
                 newFigure.setPopup(view.getTrianglePopup());
-            } else if (selection.equals("Right Triangle")) {
+            } else if (selection.equals("RightTriangle")) {
                 newFigure = new KRightTriangle(color, x1, y1, x2, y2);
                 newFigure.setPopup(view.getRightTrianglePopup());
             } else if (selection.equals("Diamond")) {
@@ -190,6 +190,14 @@ public class FigureDialog extends JDialog {
                         "Sorry!!!", JOptionPane.ERROR_MESSAGE);
                 return;
             } else if (selection.equals("Image")) {
+                JOptionPane.showMessageDialog(this, "Please use the toolbar.",
+                        "Sorry!!!", JOptionPane.ERROR_MESSAGE);
+                return;
+            } else if (selection.equals("Eraser")){
+                JOptionPane.showMessageDialog(this, "Please use the toolbar.",
+                        "Sorry!!!", JOptionPane.ERROR_MESSAGE);
+                return;
+            } else if (selection.equals("Scribble")){
                 JOptionPane.showMessageDialog(this, "Please use the toolbar.",
                         "Sorry!!!", JOptionPane.ERROR_MESSAGE);
                 return;
