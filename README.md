@@ -1,5 +1,3 @@
 # KDrawer JAVA Project
 
-김정우
-고현규
-김동혁
+### DOWNLOAD (https://github.com/KDrawer/KDrawer/releases/tag/0.1)
