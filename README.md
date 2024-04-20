@@ -2,13 +2,17 @@
 
 ## 0. 목차
 
-1. 프로젝트 소개
-2. 팀 소개
-3. 프로젝트 구성 및 아키텍처
-4. 스크린샷
-
+1. [프로젝트 소개](#1-프로젝트-소개)
+2. [팀 소개](#2-팀-소개)
+3. [프로젝트 구성 및 아키텍처](#3-프로젝트-구성-및-아키텍처)
+4. [스크린샷](#4-스크린샷)
+5. [다운로드](#5-Download)
+   
 ## 1. 프로젝트 소개
-작성 중
++ KDrawer는 디자인 및 프로토타이핑 협업툴입니다.
++ 다양한 그림 객체를 사용할 수 있으며 생성된 객체를 수정하거나 복사 또는 삭제 기능을 제공합니다.
++ Talk 기능을 통해 사용자 간의 실시간 채팅 기능 사용할 수 있습니다.
++ 작업물을 사용자 간 전송 또는 수신할 수 있으며 실시간으로 공유하는 기능도 포함하고 있습니다.
 
 ## 2. 팀 소개
 
@@ -111,22 +115,21 @@
 ![popup class diagram](https://github.com/KDrawer/KDrawer/assets/100178817/ad8f3be2-1419-4f3b-a077-3c10e8c4782c)
 </details>
 
-
 ## 4. 스크린샷
-##### 1.초기화면
+#### 1.초기화면
 ![KDrawer - 초기화면](https://github.com/KDrawer/KDrawer/assets/100178817/d83b4137-405e-456c-9e29-a2831eec23c0)
 
-##### 2. 메뉴
+#### 2. 메뉴
 ![KDrawer - 그림 메뉴](https://github.com/KDrawer/KDrawer/assets/100178817/56915d91-4367-4e9b-8bd5-70bb2071d192)
 ![KDrawer - 도구 메뉴](https://github.com/KDrawer/KDrawer/assets/100178817/5478e563-73db-42cc-979d-644e2cbbc160)
 
-##### 3. 기능
+#### 3. 기능
 ![KDrawer - 그리기 대화상자](https://github.com/KDrawer/KDrawer/assets/100178817/b158d11b-8ec7-4690-b9a0-201ccbc2419a)
 ![KDrawer - 테이블](https://github.com/KDrawer/KDrawer/assets/100178817/d8418066-3d17-47c7-8f46-54d93730c6a2)
 ![KDrawer - 트리](https://github.com/KDrawer/KDrawer/assets/100178817/f0ecc368-6553-449d-9810-cdd96ac2aa43)
 ![KDrawer - talk 5](https://github.com/KDrawer/KDrawer/assets/100178817/6cb40b3b-9938-43e1-a307-a88730d0de0d)
 
-##### 4. Talk
+#### 4. Talk
 ![KDrawer - talk 1](https://github.com/KDrawer/KDrawer/assets/100178817/051de79f-148c-4cb8-8989-bb3f8c72d11e)
 ![KDrawer - talk 2](https://github.com/KDrawer/KDrawer/assets/100178817/c0f9b355-6ceb-49a2-b2e6-3f6169862870)
 ![KDrawer - talk 3](https://github.com/KDrawer/KDrawer/assets/100178817/240f4ffe-9dca-46de-ac2e-4b476527b043)
