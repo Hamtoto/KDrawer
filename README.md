@@ -2,17 +2,15 @@
 
 ## 0. 목차
 
-1. [프로젝트 소개](section1)
-2. [팀 소개](section2)
-3. [프로젝트 구성 및 아키텍처](section3)
-4. [스크린샷](section4)
-5. [다운로드](section5)
+1. [프로젝트 소개](#1-프로젝트-소개)
+2. [팀 소개](#2-팀-소개)
+3. [프로젝트 구성 및 아키텍처](#3-프로젝트-구성-및-아키텍처)
+4. [스크린샷](#4-스크린샷)
+5. [다운로드](#5-Download)
    
-<a id="section1"></a>
 ## 1. 프로젝트 소개
 작성 중
 
-<a id="section2"></a>
 ## 2. 팀 소개
 
 |                                                                                    **김정우**                                                                                    |                                                                                                  **고현규**                                                                                                  |                                                                                                                                         **김동혁**     
@@ -20,7 +18,6 @@
 |                         <img src="https://avatars.githubusercontent.com/u/85924877?v=4" height=180 >                         |                                       <img src="https://avatars.githubusercontent.com/u/100178817?v=4" height=180 >                                       |                                 <img src="https://avatars.githubusercontent.com/u/75555609?v=4" height=180 >                                 |
 | [🔗 GitHub](https://github.com/jungwu2503)<br/>  | [🔗 GitHub](https://github.com/Hamtoto)<br/>  | [🔗 GitHub](https://github.com/BaSak0630)<br/>  |
 
-<a id="section3"></a>
 ## 3. 프로젝트 구성 및 아키텍처 
 
 <details>
@@ -115,7 +112,6 @@
 ![popup class diagram](https://github.com/KDrawer/KDrawer/assets/100178817/ad8f3be2-1419-4f3b-a077-3c10e8c4782c)
 </details>
 
-<a id="section4"></a>
 ## 4. 스크린샷
 #### 1.초기화면
 ![KDrawer - 초기화면](https://github.com/KDrawer/KDrawer/assets/100178817/d83b4137-405e-456c-9e29-a2831eec23c0)
@@ -136,7 +132,6 @@
 ![KDrawer - talk 3](https://github.com/KDrawer/KDrawer/assets/100178817/240f4ffe-9dca-46de-ac2e-4b476527b043)
 ![KDrawer - talk 4](https://github.com/KDrawer/KDrawer/assets/100178817/8e6d3c1d-ab5a-4c53-92ea-ea34b7762efd)
 
-<a id="section5"></a>
 ## 5. Download
 [Link](https://github.com/KDrawer/KDrawer/releases/tag/0.1)
 
